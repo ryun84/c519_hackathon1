@@ -1,0 +1,97 @@
+.masterCardDiv {
+    width: 98vw;
+    height: 49vh;
+    background-color: rgb(163, 147, 94);
+    position: relative;
+}
+.pointsCardRowDiv {
+    height: 40%;
+    width: 80%;
+    position: relative;
+    left: 19%;
+    top: 5%;
+    border: solid 1px black;
+}
+.cardContainer {
+    border: solid 1px black;
+    width: 12%;
+    height: 99%;
+    float: right;
+    position: relative;
+}
+.card {
+    background-color: aqua;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    position: absolute;
+    text-align: center;
+}
+.merchantCardRowDiv {
+    border: solid 1px black;
+    height: 40%;
+    width: 80%;
+    position: relative;
+    left: 19%;
+    top: 10%;
+}
+.pointCardBack {
+    background-color: purple;
+}
+.merchantCardBack {
+    background-color: yellow;
+} 
+.playerArea {
+    width: 98vw;
+    height: 49vh;
+    background-color: rgb(131, 125, 105);
+    position: relative;
+}
+.cardContainerPlayer {
+    border: solid 1px black;
+    width: 15%;
+    height: 99%;
+    float: left;
+    position: relative;
+}
+.availableCardsRowDiv {
+    border: solid 1px black;
+    height: 40%;
+    width: 60%;
+    position: relative;
+    display: inline-block;
+    left: 1%;
+    top: 10%;
+    margin-top: 2.5%;
+    margin-left: 0%;
+} 
+.playerActionArea {
+    border: solid 1px black;
+    height: 40%;
+    width: 30%;
+    position: relative;
+    display: inline-block;
+    left: 8%;
+    top: 10%;
+    margin-top: 2.5%;
+} 
+.playerInfoContainer {
+    border: solid 1px black;
+    width: 32.5%;
+    height: 99%;
+    position: relative;
+    float: left;
+    text-align: center;
+}
+
+
+
+/* .discarded {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    right: 15%;
+    position: relative;
+    background-color: green;
+}  */
