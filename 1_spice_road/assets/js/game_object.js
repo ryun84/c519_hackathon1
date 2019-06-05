@@ -4,6 +4,12 @@ class Game {
         this.totalTurns = 0;
         this.pointsCardArray = [];
         this.merchantCardArray = [];
+        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+    }
+
+    clickHandlers() {
+        $('.points').click(pointClickHandler);
+
     }
 
     createGameStartCard() {
@@ -27,6 +33,10 @@ class Game {
     generatePointCards() {
         var pointsValue = Math.floor(Math.random() * 20) - 6;
         this.pointsCardArray.push(pointsValue);
+
+    }
+
+    pointClickHandler(event) {
 
     }
 }
