@@ -37,6 +37,15 @@ class Game {
     }
 
     pointClickHandler(event) {
-
+        var pointIndex = $(this).attr('data-index');
+        pointIndex = pointIndex.parseFloat(pointIndex);
+        if (this.currentPlayer.yellow > 0) {
+            this.currentPlayer.yellow -= 1;
+            this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
+            this.currentPlayer.pointCardCount += 1;
+            this.pointsCardArray.splice(pointIndex, 1, this.generatePointCards);
+        } else {
+            alert("You do not have enough yellow spice to make this move");
+        }
     }
 }
