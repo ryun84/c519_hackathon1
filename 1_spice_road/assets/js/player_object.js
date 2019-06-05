@@ -14,21 +14,37 @@ class Player {
     receiveVictoryPoints(){
         //this.victoryPoints += (victory card object point value);
         this.updateVictoryPointsDisplay();
-
     }
 
     updateVictoryPointsDisplay(){
         if(Game.currentPlayer === "playerOne"){
-            $('.totalPoints1'+ playerPoint).text(this.victoryPoints);
+            $('.totalPoints1').text(this.victoryPoints);
         }else{
-            $('.totalPoints2'+ playerPoint).text(this.victoryPoints);
+            $('.totalPoints2').text(this.victoryPoints);
         }
     }
-      
 
-    getresources(){
+    receiveSpices (){
+        // this.yellow += (merchant card object point value);
+        // this.red += (merchant card object point value); 
+        // this.green += (merchant card object point value); 
+        // this.brown += (merchant card object point value); 
+        this.updateSpicePointsDisplay();
     }
 
+    updateSpicePointsDisplay(){
+        if(Game.currentPlayer === "playerOne"){
+            $('.playerOne.yellow').text(this.yellow);
+            $('.playerOne.green').text(this.green);
+            $('.playerOne.red').text(this.red);
+            $('.playerOne.brown').text(this.brown);
+        } else {
+            $('.playerTwo.yellow').text(this.yellow);
+            $('.playerTwo.green').text(this.green);
+            $('.playerTwo.red').text(this.red);
+            $('.playerTwo.brown').text(this.brown);
+        }
+    }    
 
     receiveCard(){
     }
