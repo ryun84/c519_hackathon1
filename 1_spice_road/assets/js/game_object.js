@@ -59,13 +59,12 @@ class Game {
 
     pointClickHandler(event) {
         var pointIndex = $(event.currentTarget).attr('data-index');
-        // console.log(pointIndex);
         if (this.currentPlayer.yellow > 0) {
             this.currentPlayer.yellow -= 1;
             this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
-            // console.log(this.pointsCardArray[pointIndex])
             this.currentPlayer.pointCardCount += 1;
-            this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) - 6);
+            this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
+
             this.updateVictoryPointsDisplay();
         } else {
             alert("You do not have enough yellow spice to make this move");
@@ -75,9 +74,11 @@ class Game {
     updateVictoryPointsDisplay() {
         var victoryValue = parseFloat(this.playerOne.victoryPoints);
         if (this.currentPlayer === this.playerOne) {
+            $('.cardCount.playerOne').text(this.playerOne.pointCardCount);
             $('.victoryPoints.playerOne').text(victoryValue);
         } else {
             $('.victoryPoints.playerTwo').text(this.playerTwo.victoryPoints);
+            $('.cardCount.playerTwo').text(this.playerTwo.pointCardCount);
         }
     }
 
@@ -90,7 +91,7 @@ class Game {
             var tradeCard = this.createMerchantTradeCard();
             this.merchantCardArray.push(tradeCard);
         }
-    }    
+    }
 
     createMerchantGatherCard() {
         var spiceValue = Math.floor(Math.random() * 4) + 2;
