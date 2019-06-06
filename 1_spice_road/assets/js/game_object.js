@@ -16,12 +16,13 @@ class Game {
         this.winCondition = 5;
         this.turnsLeft = 0;
         this.getMerchantToHand = this.getMerchantToHand.bind(this);
+        this.merchantClickHandler = this.merchantClickHandler.bind(this);
         // this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
 
     clickHandlers() {
         $('.points').click(this.pointClickHandler);
-        $('.merchant').click(this.currentPlayer.merchantClickHandler);
+        $('.playerMerchant').click(this.merchantClickHandler);
         $('.merchant').click(this.getMerchantToHand);
         $('.discardArea').click(this.endTurn);
     }
@@ -109,9 +110,9 @@ class Game {
             this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
             this.currentPlayer.pointCardCount += 1;
             this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
-
             this.updateVictoryPointsDisplay();
             this.updateVictoryPointCardsDisplay();
+            this.updateSpiceCountDisplay();
         } else {
             alert("You do not have enough yellow spice to make this move");
         }
@@ -208,5 +209,32 @@ class Game {
             }
         }
 
+    }
+
+    merchantClickHandler(event){
+        var useCardIndex = $(event.currentTarget).attr('data-index');
+        var merchCardToUseData = this.currentPlayer.merchantCardsInHand[useCardIndex];
+        if (Array.isArray(merchCardToUseData)) {
+            var spiceToDeduct = merchCardToUseData[0];
+            var spiceToAdd = merchCardToUseData[1];
+            if( spiceToDeduct > this.currentPlayer.yellow ){
+                alert("You do not have enough resources!");
+            } else {
+                this.currentPlayer.yellow -= spiceToDeduct;
+                this.currentPlayer.yellow += spiceToAdd;
+            }
+        } else {
+            var spiceToStraightAdd = merchCardToUseData;
+            this.currentPlayer.yellow += spiceToStraightAdd;
+        }
+        this.updateSpiceCountDisplay();
+    }
+
+    updateSpiceCountDisplay(){
+        if( this.currentPlayer === this.playerOne ){
+            $("#p1_sq4").html("Yellow Spices<br/>" + this.playerOne.yellow);
+        } else {
+            $("#p2_sq4").html("Yellow Spices<br/>" + this.playerTwo.yellow);
+        }
     }
 }

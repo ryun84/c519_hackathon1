@@ -44,7 +44,23 @@ class Player {
         }
     }
 
+    merchantClickHandler(event){
+        var useCardIndex = $(event.currentTarget).attr('data-index');
+        var merchCardToUseData = this.merchantCardsInHand[useCardIndex];
+        if (Array.isArray(merchCardToUseData)) {
+            var spiceToDeduct = merchCardToUseData[0];
+            var spiceToAdd = merchCardToUseData[1];
+            if( spiceToDeduct > newGame.currentPlayer.yellow ){
 
+            } else {
+                newGame.currentPlayer.yellow -= spiceToDeduct;
+                newGame.currentPlayer.yellow += spiceToAdd;
+            }
+        } else {
+            var spiceToStraightAdd = merchCardToUseData;
+            newGame.currentPlayer.yellow += spiceToStraightAdd;
+        }
+    }
 
 
     displayCardsInHand() {
