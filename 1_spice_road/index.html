@@ -11,87 +11,133 @@
     <script src="assets/js/game_object.js"></script>
     <script src="assets/js/main.js"></script>
     <link rel="stylesheet " href="style.css">
-    <title>Document</title>
+    <title>Spice Road</title>
 </head>
 
 <body>
 
     <main>
+        
         <div class="masterCardDiv">
+            <img src="https://i0.wp.com/www.thefamilygamers.com/wp-content/uploads/Century-cover.jpg" class="image">
             <div class="pointsCardRowDiv">
                 <div class="cardContainer point">
                     <div class="card pointCardBack" data-type="points">Vic Back</div>
                 </div>
-                <div class="cardContainer point ">
-                    <div class="card points" data-type="points " data-index="4">Vic 5</div>
+                <div class="cardContainer point">
+                    <div class="card points" data-type="points" data-index="4">Vic 5</div>
                 </div>
-                <div class="cardContainer point ">
-                    <div class="card points" data-type="points " data-index="3">Vic 4</div>
+                <div class="cardContainer point">
+                    <div class="card points" data-type="points" data-index="3">Vic 4</div>
                 </div>
-                <div class="cardContainer point ">
-                    <div class="card points" data-type="points " data-index="2">Vic 3</div>
+                <div class="cardContainer point">
+                    <div class="card points" data-type="points" data-index="2">Vic 3</div>
                 </div>
-                <div class="cardContainer point ">
-                    <div class="card points" data-type="points " data-index="1">Vic 2</div>
+                <div class="cardContainer point">
+                    <div class="card points" data-type="points" data-index="1">Vic 2</div>
                 </div>
-                <div class="cardContainer point ">
-                    <div class="card points" data-type="points " data-index="0">Vic 1</div>
+                <div class="cardContainer point">
+                    <div class="card points" data-type="points" data-index="0">Vic 1</div>
                 </div>
             </div>
-            <div class="merchantCardRowDiv ">
-                <div class="cardContainer ">
-                    <div class="card merchantCardBack " data-type="merchant ">Merchant Back</div>
+            <div class="merchantCardRowDiv">
+                <div class="cardContainer">
+                    <div class="card merchantCardBack" data-type="merchant">Merchant Back</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="5 ">Merch 5</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="5">Merch 5</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="4 ">Merch 4</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="4">Merch 4</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="3 ">Merch 3</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="3">Merch 3</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="2 ">Merch 2</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="2">Merch 2</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="1 ">Merch 1</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="1">Merch 1</div>
                 </div>
-                <div class="cardContainer ">
-                    <div class="card merchant " data-type="merchant " data-index="0 ">Merch 0</div>
+                <div class="cardContainer">
+                    <div class="card merchant" data-type="merchant" data-index="0">Merch 0</div>
                 </div>
 
             </div>
         </div>
-        <div class="playerArea ">
-            <div class="availableCardsRowDiv ">
-                <div class="cardContainerPlayer ">
-                    <div class="card " data-index="0 ">Card 1</div>
+        <div class="playerArea">
+            <div class="availableCardsRowDiv">
+                <div class="cardContainerPlayer">
+                    <div class="card" data-index="0">Card 1</div>
                 </div>
-                <div class="cardContainerPlayer ">
-                    <div class="card " data-index="1 ">Card 2</div>
+                <div class="cardContainerPlayer">
+                    <div class="card" data-index="1">Card 2</div>
                 </div>
-                <div class="cardContainerPlayer ">
-                    <div class="card " data-index="2 ">Card 3</div>
+                <div class="cardContainerPlayer">
+                    <div class="card" data-index="2">Card 3</div>
                 </div>
-                <div class="cardContainerPlayer ">
-                    <div class="card " data-index="3 ">Card 4</div>
+                <div class="cardContainerPlayer">
+                    <div class="card" data-index="3">Card 4</div>
                 </div>
-                <div class="cardContainerPlayer ">
-                    <div class="card " data-index="4 ">Card 5</div>
+                <div class="cardContainerPlayer">
+                    <div class="card" data-index="4">Card 5</div>
                 </div>
             </div>
-            <div class="playerActionArea ">
-                <div class="playerInfoContainer ">
+            <div class="playerDiscardArea">
+                <div class="discardArea">
                     <div class="discard ">Discarded Card</div>
                 </div>
-                <div class="playerInfoContainer ">
-                    <div class="numberDiscarded ">Number Discarded</div>
+                <div class="discardArea">
+                    <div class="numberDiscarded">Number Discarded</div>
                 </div>
-                <div class="playerInfoContainer ">
-                    <div class="rest ">Rest</div>
+                <div class="discardArea">
+                    <div class="rest">Rest</div>
                 </div>
             </div>
+
+
+
+            <div class="playerStatsRow playerOne">
+                <div class="statRowContainer">
+                    <div class="yellow spice playerOne">"0"</div>
+                </div>
+                <div class="statRowContainer">
+                    <div class="red spice playerOne">"1"</div>
+                </div>
+                <div class="statRowContainer">
+                    <div class="green spice playerOne">"2"</div>
+                </div>
+                <div class="statRowContainer">
+                    <div class="brown spice playerOne">"3"</div>
+                </div>
+                <div class="statRowContainer">
+                    <div class="spice victoryPoints playerOne">"4"</div>
+                </div>
+                <div class="statRowContainer">
+                    <div class="spice cardCount playerOne">"5"</div>
+                </div>
+            </div>
+
+            <div class="playerStatsRow playerTwo">
+                    <div class="statRowContainer playerTwo">
+                            <div class="spice cardCount playerTwo">"5"</div>
+                    </div>
+                    <div class="statRowContainer">
+                            <div class="spice victoryPoints playerTwo">"4"</div>
+                    </div>
+                    <div class="statRowContainer">
+                            <div class="brown spice playerTwo">"3"</div>
+                    </div>
+                    <div class="statRowContainer">
+                            <div class="green spice playerTwo">"2"</div>
+                    </div>
+                    <div class="statRowContainer">
+                            <div class="red spice playerTwo">"1"</div>
+                    </div>
+                    <div class="statRowContainer">
+                            <div class="yellow spice playerTwo">"0"</div>
+                    </div>
+                </div>
         </div>
         <!-- <div class="discarded ">
             <div class="card merchantCardBack ">
@@ -130,26 +176,7 @@
 
                 </div>
             </div>
-            <div class="playerTwoDiv player ">
-                <div class="spice playerTwo yellow ">
 
-                </div>
-                <div class="spice playerTwo red ">
-
-                </div>
-                <div class="spice playerTwo green ">
-
-                </div>
-                <div class="spice playerTwo brown ">
-
-                </div>
-                <div class="totalPoints playerTwo ">
-
-                </div>
-                <div class="pointsCardCount playerTwo ">
-
-                </div>
-            </div>
 
 
 
