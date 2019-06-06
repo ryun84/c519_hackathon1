@@ -24,12 +24,24 @@ class Player {
         }
     }
 
-    receiveSpices() {
+    receiveSpices(yellow, red, green, brown) {
         // this.yellow += (merchant card object point value);
         // this.red += (merchant card object point value); 
         // this.green += (merchant card object point value); 
         // this.brown += (merchant card object point value); 
         this.updateSpicePointsDisplay();
+    }
+
+    spendSpices(yellow, red, green, brown){
+        // this.yellow -= (merchant card object point value);
+        // this.red -= (merchant card object point value); 
+        // this.green -= (merchant card object point value); 
+        // this.brown -= (merchant card object point value);
+        this.updateSpicePointsDisplay();
+    }
+
+    spiceTransaction(){
+        if( Array.isArray(merch))
     }
 
     updateSpicePointsDisplay() {
@@ -43,6 +55,16 @@ class Player {
             $('.playerTwo.green').text(this.green);
             $('.playerTwo.red').text(this.red);
             $('.playerTwo.brown').text(this.brown);
+        }
+    }
+
+    merchantClickHandler(event) {
+        var merchantIndex = $(event.currentTarget).attr('data-index');
+        var merchantCardValue = Game.merchantCardArray[ merchantIndex ];
+        if( Array.isArray( merchantCardValue ) ) {
+            // push merchantCardValue to array merchantCardsInHand
+        } else {
+
         }
     }
 

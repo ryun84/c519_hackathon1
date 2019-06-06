@@ -13,6 +13,7 @@ class Game {
 
     clickHandlers() {
         $('.points').click(this.pointClickHandler);
+        $('.merchant').click(this.currentPlayer.merchantClickHandler);
 
     }
 
