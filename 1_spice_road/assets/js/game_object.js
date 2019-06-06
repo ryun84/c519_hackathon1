@@ -160,9 +160,11 @@ class Game {
                 if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
                     this.updateVictoryPointCardsDisplay();
                     this.playerOneWins();
+                    return;
                 } else {
                     updateVictoryPointCardsDisplay();
                     this.playerTwoWins();
+                    return;
                 }
             }
             if (this.currentPlayer === this.playerOne) {
