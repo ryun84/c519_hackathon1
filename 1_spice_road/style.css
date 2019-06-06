@@ -1,16 +1,21 @@
+body, main {
+    height: 100vh;
+    margin: 0;
+}
+
 .masterCardDiv {
-    width: 98vw;
-    height: 49vh;
+    width: 100vw;
+    height: 50vh;
     background-color: rgb(163, 147, 94);
     position: relative;
 }
 
 .pointsCardRowDiv {
-    height: 40%;
+    height: 45%;
     width: 80%;
     position: relative;
     left: 19%;
-    top: 5%;
+    top: 3%;
 }
 
 .cardContainer {
@@ -23,7 +28,7 @@
 .card {
     background-color: aqua;
     width: 90%;
-    height: 90%;
+    height: 95%;
     top: 5%;
     left: 5%;
     position: absolute;
@@ -31,11 +36,11 @@
 }
 
 .merchantCardRowDiv {
-    height: 40%;
+    height: 45%;
     width: 80%;
     position: relative;
     left: 19%;
-    top: 10%;
+    top: 5%;
 }
 
 .pointCardBack {
@@ -47,27 +52,27 @@
 }
 
 .playerArea {
-    width: 98vw;
-    height: 49vh;
-    background-color: rgb(131, 125, 105);
+    width: 100vw;
+    height: 50vh;
+    background-color: rgb(146, 144, 138);
     position: relative;
 }
 
 .cardContainerPlayer {
     width: 15%;
-    height: 99%;
+    height:100%;
     float: left;
     position: relative;
 }
 
 .availableCardsRowDiv {
-    height: 40%;
+    height: 45%;
     width: 60%;
     position: relative;
     display: inline-block;
     left: 1%;
     top: 0%;
-    margin-top: 2.5%;
+    margin-top: 0.5%;
     margin-left: 0%;
 }
 
@@ -131,16 +136,16 @@
     position: relative;
 }
 .yellow {
-    background-color: yellow;
+    background-color: grey;
 }
 .green {
-    background-color: green;
+    background-color: grey;
 }
 .red {
-    background-color: red;
+    background-color: grey;
 }
 .brown {
-    background-color: rgb(98, 20, 6);
+    background-color: yellow;
 }
 .victoryPoints{
     background-color: lightcoral;
@@ -149,9 +154,10 @@
     background-color: lightsalmon;
 }
 .image {
-    position: relative;
+    position: absolute;
     display: inline-block;
-    height: 25%;
-    width: 15%;
-    float: left;
+    height: 80%;
+    width: 30%;
+    top: 5%;
+    left: 1%;
 }
