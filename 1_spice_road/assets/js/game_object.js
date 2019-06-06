@@ -9,12 +9,23 @@ class Game {
         this.pointsCardArray = [];
         this.merchantCardArray = [];
         this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+        this.endTurn = this.endTurn.bind(this);
+        this.winCondition = 5;
     }
 
     clickHandlers() {
         $('.points').click(this.pointClickHandler);
         $('.merchant').click(this.currentPlayer.merchantClickHandler);
+        $('.discardArea').click(this.endTurn);
 
+    }
+
+    endTurn() {
+        if (this.currentPlayer === this.playerOne) {
+            this.currentPlayer = this.playerTwo;
+        } else {
+            this.currentPlayer = this.playerOne;
+        }
     }
 
     createGameStartCard() {
@@ -36,29 +47,62 @@ class Game {
 
     createFirstMerchantCards() {
         for (var i = 0; i < 6; i++) {
-            MerchantCard.createMerchantCard();
+            this.createMerchantCard();
         }
-
     }
 
     generatePointCards() {
-        var pointsValue = Math.floor(Math.random() * 20) - 6;
+        var pointsValue = Math.floor(Math.random() * 20) + 6;
         this.pointsCardArray.push(pointsValue);
 
     }
 
     pointClickHandler(event) {
         var pointIndex = $(event.currentTarget).attr('data-index');
-        debugger;
-        console.log(pointIndex);
+        // console.log(pointIndex);
         if (this.currentPlayer.yellow > 0) {
             this.currentPlayer.yellow -= 1;
             this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
-            console.log(this.pointsCardArray[pointIndex])
+            // console.log(this.pointsCardArray[pointIndex])
             this.currentPlayer.pointCardCount += 1;
             this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) - 6);
+            this.updateVictoryPointsDisplay();
         } else {
             alert("You do not have enough yellow spice to make this move");
         }
+    }
+
+    updateVictoryPointsDisplay() {
+        var victoryValue = parseFloat(this.playerOne.victoryPoints);
+        if (this.currentPlayer === this.playerOne) {
+            $('.victoryPoints.playerOne').text(victoryValue);
+        } else {
+            $('.victoryPoints.playerTwo').text(this.playerTwo.victoryPoints);
+        }
+    }
+
+    createMerchantCard() {
+        var rNG = Math.ceil(Math.random() * 2);
+        if (rNG === 1) {
+            var gatherCard = this.createMerchantGatherCard();
+            this.merchantCardArray.push(gatherCard);
+        } else {
+            var tradeCard = this.createMerchantTradeCard();
+            this.merchantCardArray.push(tradeCard);
+        }
+    }    
+
+    createMerchantGatherCard() {
+        var spiceValue = Math.floor(Math.random() * 4) + 2;
+        return spiceValue;
+    }
+
+    createMerchantTradeCard() {
+        var topValue = Math.floor(Math.random() * 5) + 2;
+        var bottomValue = Math.floor(Math.random() * 5) + 2;
+        var tradeCard = [];
+        tradeCard.push(topValue);
+        tradeCard.push(bottomValue);
+        return tradeCard;
     }
 }
