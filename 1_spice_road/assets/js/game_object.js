@@ -102,7 +102,10 @@ class Game {
             var tradeCard = this.createMerchantTradeCard();
             this.merchantCardArray.push(tradeCard);
         }
-    }
+        this.displayMerchantCardInfo();
+    }    
+
+
 
     createMerchantGatherCard() {
         var spiceValue = Math.floor(Math.random() * 4) + 2;
@@ -116,5 +119,17 @@ class Game {
         tradeCard.push(topValue);
         tradeCard.push(bottomValue);
         return tradeCard;
+    }
+
+    displayMerchantCardInfo() {
+        for( var counter = 0; counter < 6; counter++ ){
+            var merchantInnerArray = this.merchantCardArray[counter];
+            if( Array.isArray( merchantInnerArray ) ){
+                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Trade " + merchantInnerArray[0] + "<br/> for " + merchantInnerArray[1] );
+            } else {
+                $(".merchantCardRowDiv [data-index='" + counter + "']").text("Receive " + merchantInnerArray );
+            }
+        }
+
     }
 }

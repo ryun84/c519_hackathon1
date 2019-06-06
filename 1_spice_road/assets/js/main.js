@@ -18,8 +18,6 @@ function intializeApp() {
     //     console.log(playerTwo);
 
     // }
-    console.log(newGame.pointsCardArray);
-    console.log(newGame.merchantCardArray);
 }
 
 
