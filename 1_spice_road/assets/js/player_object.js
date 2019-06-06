@@ -4,6 +4,12 @@ class Player {
         this.red = 0;
         this.green = 0;
         this.brown = 0;
+        // this.resources={
+        //     yellow: 0,
+        //     red: 0,
+        //     green: 0, 
+        //     brown: 0
+        // }
         this.victoryPoints = 0;
         this.pointCardCount = 0;
         this.merchantCardsInHand = [];
