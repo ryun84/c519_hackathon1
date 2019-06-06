@@ -59,53 +59,98 @@ body, main {
 }
 
 .cardContainerPlayer {
-    width: 15%;
+    width: 19%;
     height:100%;
     float: left;
     position: relative;
 }
 
-.availableCardsRowDiv {
+.availableCardsRowDiv, .playerDiscardArea, .playerActionArea {
+    vertical-align: top;
     height: 45%;
-    width: 60%;
     position: relative;
     display: inline-block;
     left: 1%;
-    top: 0%;
-    margin-top: 0.5%;
-    margin-left: 0%;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.availableCardsRowDiv {
+    width: 49%;
 }
 
 .playerDiscardArea {
-    height: 40%;
-    width: 30%;
+    width: 24%;
+}
+
+.playerActionArea {
+    width: 24%;
+}
+
+.availableCardsRow_Title, .playerDiscardArea_Title, .playerActionButtons_Title {
     position: relative;
+    height: 5%;
     display: inline-block;
-    left: 8.5%;
-    top: 10%;
+    left: 1%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0.5%;
+    text-align: center;
+}
+
+.availableCardsRow_Title {
+    width: 49%;
+}
+
+.playerDiscardArea_Title {
+    width: 24%;
+}
+
+.playerActionButtons_Title {
+    width: 24%;
 }
 
 .discardArea {
     background-color: lightblue;
-    width: 32.75%;
+    width: 48%;
     height: 99%;
     position: relative;
     float: left;
     text-align: center;
     border: 1px solid black;
+}
 
+.playerStats_Title {
+    position: relative;
+    height: 5%;
+    width: 49%;
+    display: inline-block;
+    left: 1%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 1.5%;
+    text-align: center;
+}
+
+.playerActionArea>div {
+    background-color: lightblue;
+    width: 48%;
+    height: 99%;
+    position: relative;
+    float: left;
+    text-align: center;
+    border: 1px solid black;    
 }
 
 .playerStatsRow {
-    height: 30%;
+    height: 32%;
     width: 48%;
     position: relative;
     display: inline-block;
-    top: 10%;
     left: 1%;
-    margin-top: 2.5%;
-    
+    margin-top: 0.5%; 
 }
+
 .playerStatsRow.playerTwo{
     left: 2.5%;
 }
