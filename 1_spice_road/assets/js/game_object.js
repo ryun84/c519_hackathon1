@@ -66,6 +66,7 @@ class Game {
             this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
 
             this.updateVictoryPointsDisplay();
+            this.updateVictoryPointCardsDisplay();
         } else {
             alert("You do not have enough yellow spice to make this move");
         }
@@ -80,6 +81,16 @@ class Game {
             $('.victoryPoints.playerTwo').text(this.playerTwo.victoryPoints);
             $('.cardCount.playerTwo').text(this.playerTwo.pointCardCount);
         }
+    }
+
+    updateVictoryPointCardsDisplay() {
+        $("#zeroIndex").html("Victory Points: <br/> " + this.pointsCardArray[0]);
+        $("#oneIndex").html("Victory Points: <br/>" + this.pointsCardArray[1]);
+        $("#twoIndex").html("Victory Points: <br/>" + this.pointsCardArray[2]);
+        $("#threeIndex").html("Victory Points: <br/>" + this.pointsCardArray[3]);
+        $("#fourIndex").html("Victory Points: <br/>" + this.pointsCardArray[4]);
+
+
     }
 
     createMerchantCard() {

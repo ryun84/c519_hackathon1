@@ -7,6 +7,7 @@ function intializeApp() {
     newGame = new Game();
     newGame.createFirstPointCards();
     newGame.createFirstMerchantCards();
+    newGame.updateVictoryPointCardsDisplay();
     // playerOne.yellow = 3;
     // playerTwo.yellow = 4;
     // newGame.currentPlayer = playerOne;
@@ -17,8 +18,8 @@ function intializeApp() {
     //     console.log(playerTwo);
 
     // }
-console.log(newGame.pointsCardArray);
-console.log(newGame.merchantCardArray);
+    console.log(newGame.pointsCardArray);
+    console.log(newGame.merchantCardArray);
 }
 
 
