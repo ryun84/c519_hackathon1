@@ -14,6 +14,7 @@ class Game {
         this.endTurn = this.endTurn.bind(this);
         this.firstTurn = true;
         this.winCondition = 5;
+        this.turnsLeft = 0;
         this.getMerchantToHand = this.getMerchantToHand.bind(this);
         // this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
@@ -26,7 +27,7 @@ class Game {
     }
 
     getMerchantToHand(event) {
-        if(this.currentPlayer.merchantCardsInHand.length===5){
+        if (this.currentPlayer.merchantCardsInHand.length === 5) {
             return;
         }
         var merchIndex = parseFloat($(event.currentTarget).attr('data-index'));
@@ -42,25 +43,25 @@ class Game {
 
         this.merchantCardArray.splice(merchIndex, 1, newMerchCard);
         this.displayMerchantCardsInHand();
-        this.displayMerchantCardInfo();    
+        this.displayMerchantCardInfo();
     }
 
     displayMerchantCardsInHand() {
-            var merchantHandArray = this.currentPlayer.merchantCardsInHand;
-            $(".availableCardsRowDiv [data-index='" + 0 + "']").text("Receive " + merchantHandArray[merchIndex]);
-            for (var merchIndex =0; merchIndex<=this.currentPlayer.merchantCardsInHand.length-1; merchIndex++){
-                if( Array.isArray( merchantHandArray[merchIndex] ) ){
-                    $(".availableCardsRowDiv [data-index='" + merchIndex + "']").html("Trade " + merchantHandArray[merchIndex][0]+ "<br/> for " + merchantHandArray[merchIndex][1]);
-                } else {
-                    $(".availableCardsRowDiv [data-index='" + merchIndex + "']").text("Receive " + merchantHandArray[merchIndex]);
-                }
+        var merchantHandArray = this.currentPlayer.merchantCardsInHand;
+        $(".availableCardsRowDiv [data-index='" + 0 + "']").text("Receive " + merchantHandArray[merchIndex]);
+        for (var merchIndex = 0; merchIndex <= this.currentPlayer.merchantCardsInHand.length - 1; merchIndex++) {
+            if (Array.isArray(merchantHandArray[merchIndex])) {
+                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").html("Trade " + merchantHandArray[merchIndex][0] + "<br/> for " + merchantHandArray[merchIndex][1]);
+            } else {
+                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").text("Receive " + merchantHandArray[merchIndex]);
             }
+        }
     }
 
     endTurn() {
         if (this.currentPlayer === this.playerOne) {
             this.currentPlayer = this.playerTwo;
-            if(this.firstTurn===true){
+            if (this.firstTurn === true) {
                 $('.resetTurnOne').text(' ');
                 this.firstTurn = false;
             }
@@ -166,9 +167,11 @@ class Game {
             }
             if (this.currentPlayer === this.playerOne) {
                 this.currentPlayer = this.playerTwo;
+                alert("Player Two has one turn left to outspice Player One");
                 this.turnsLeft = 1;
             } else {
                 this.currentPlayer = this.playerOne;
+                alert("Player One has one turn left to outspice Player Two");
                 this.turnsLeft = 1;
             }
         }
