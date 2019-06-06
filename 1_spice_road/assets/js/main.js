@@ -8,6 +8,7 @@ function intializeApp() {
     newGame.createFirstPointCards();
     newGame.createFirstMerchantCards();
     newGame.updateVictoryPointCardsDisplay();
+    newGame.displayMerchantCardsInHand();
     // playerOne.yellow = 3;
     // playerTwo.yellow = 4;
     // newGame.currentPlayer = playerOne;
