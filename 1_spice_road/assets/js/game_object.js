@@ -12,14 +12,36 @@ class Game {
         this.endTurn = this.endTurn.bind(this);
         this.turnsLeft = 0;
         this.winCondition = 5;
+        this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
 
     clickHandlers() {
         $('.points').click(this.pointClickHandler);
-        $('.merchant').click(this.currentPlayer.merchantClickHandler);
+        // $('.merchant').click(this.currentPlayer.merchantClickHandler);
+        $('.merchant').click(this.getMerchantToHand);
         $('.discardArea').click(this.endTurn);
 
     }
+
+    // merchant info transfer in work - DL
+    // getMerchantToHand(event) {
+    //     debugger;
+    //     var merchIndex = parseFloat($(event.currentTarget).attr('data-index'));
+    //     var merchCardInfo = this.merchantCardArray[merchIndex];
+    //     this.currentPlayer.merchantCardsInHand.push(merchCardInfo);
+    //     this.displayMerchantCardsInHand();    
+    // }
+
+    // displayMerchantCardsInHand() {
+    //     for( var counter = 0; counter < 5; counter++ ){
+    //         var merchantHandArray = this.currentPlayer.merchantCardsInHand[counter];
+    //         if( Array.isArray( merchantHandArray ) ){
+    //             $(".playerMerchant [data-index='" + counter + "']").html("Trade " + merchantHandArray[0] + "<br/> for " + merchantHandArray[1] );
+    //         } else {
+    //             $(".playerMerchant [data-index='" + counter + "']").text("Receive " + merchantHandArray );
+    //         }
+    //     }
+    // }
 
     endTurn() {
         if (this.currentPlayer === this.playerOne) {
