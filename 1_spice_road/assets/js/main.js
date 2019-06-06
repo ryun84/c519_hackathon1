@@ -12,6 +12,7 @@ function intializeApp() {
     // playerTwo.yellow = 4;
     // newGame.currentPlayer = playerOne;
     newGame.clickHandlers();
+    // TODO: descriptive function name "addClickHandlers"
     // $('.point').click(newGame.clickHandlers);
 
     // function clickHandlers() {

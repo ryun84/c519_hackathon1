@@ -1,7 +1,12 @@
 class Game {
     constructor() {
-        this.playerOne = new Player();
+        this.playerOne = new Player({
+            pointCardDomElement: $(".merchantCard"),
+
+        });
         this.playerTwo = new Player();
+        this.players = [new Player(), new Player()];
+        this.currentPlayerIndex = 0;
         this.playerOne.yellow = 3;
         this.playerTwo.yellow = 4;
         this.currentPlayer = this.playerOne;
@@ -97,6 +102,7 @@ class Game {
 
     updateVictoryPointsDisplay() {
         var victoryValue = parseFloat(this.playerOne.victoryPoints);
+        this.players[this.currentPlayerIndex].updateVictoryPoints();
         if (this.currentPlayer === this.playerOne) {
             $('.cardCount.playerOne').text(this.playerOne.pointCardCount);
             $('.victoryPoints.playerOne').text(victoryValue);
