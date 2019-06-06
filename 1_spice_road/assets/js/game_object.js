@@ -1,6 +1,10 @@
 class Game {
     constructor() {
-        this.currentPlayer = null; // will be either "playerOne" or "playerTwo"
+        this.playerOne = new Player();
+        this.playerTwo = new Player();
+        this.playerOne.yellow = 3;
+        this.playerTwo.yellow = 4;
+        this.currentPlayer = this.playerOne;
         this.totalTurns = 0;
         this.pointsCardArray = [];
         this.merchantCardArray = [];
@@ -8,11 +12,11 @@ class Game {
     }
 
     clickHandlers() {
-        $('.points').click(pointClickHandler);
+        $('.points').click(this.pointClickHandler);
 
     }
 
-    createGameStartCard(){
+    createGameStartCard() {
         var startingCard = {
             // properties of however many yellow spices we want the players to start with
         }
@@ -43,13 +47,15 @@ class Game {
     }
 
     pointClickHandler(event) {
-        var pointIndex = $(this).attr('data-index');
-        pointIndex = pointIndex.parseFloat(pointIndex);
+        var pointIndex = $(event.currentTarget).attr('data-index');
+        debugger;
+        console.log(pointIndex);
         if (this.currentPlayer.yellow > 0) {
             this.currentPlayer.yellow -= 1;
             this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
+            console.log(this.pointsCardArray[pointIndex])
             this.currentPlayer.pointCardCount += 1;
-            this.pointsCardArray.splice(pointIndex, 1, this.generatePointCards);
+            this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) - 6);
         } else {
             alert("You do not have enough yellow spice to make this move");
         }

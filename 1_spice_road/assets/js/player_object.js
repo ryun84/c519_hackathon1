@@ -1,5 +1,5 @@
 class Player {
-    constructor(){
+    constructor() {
         this.yellow = 0;
         this.red = 0;
         this.green = 0;
@@ -11,20 +11,20 @@ class Player {
     }
 
 
-    receiveVictoryPoints(){
+    receiveVictoryPoints() {
         //this.victoryPoints += (victory card object point value);
         this.updateVictoryPointsDisplay();
     }
 
-    updateVictoryPointsDisplay(){
-        if(Game.currentPlayer === "playerOne"){
+    updateVictoryPointsDisplay() {
+        if (Game.currentPlayer === "playerOne") {
             $('.totalPoints1').text(this.victoryPoints);
-        }else{
+        } else {
             $('.totalPoints2').text(this.victoryPoints);
         }
     }
 
-    receiveSpices (){
+    receiveSpices() {
         // this.yellow += (merchant card object point value);
         // this.red += (merchant card object point value); 
         // this.green += (merchant card object point value); 
@@ -32,8 +32,8 @@ class Player {
         this.updateSpicePointsDisplay();
     }
 
-    updateSpicePointsDisplay(){
-        if(Game.currentPlayer === "playerOne"){
+    updateSpicePointsDisplay() {
+        if (Game.currentPlayer === "playerOne") {
             $('.playerOne.yellow').text(this.yellow);
             $('.playerOne.green').text(this.green);
             $('.playerOne.red').text(this.red);
@@ -44,15 +44,13 @@ class Player {
             $('.playerTwo.red').text(this.red);
             $('.playerTwo.brown').text(this.brown);
         }
-    }    
-
-    receiveCard(){
     }
 
+    receiveCard() {}
 
 
-    rest(){
-    }
+
+    rest() {}
 
 
 
