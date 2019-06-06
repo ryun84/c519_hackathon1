@@ -10,20 +10,6 @@ class Player {
         this.merchantCardsInDiscard = [];
     }
 
-
-    receiveVictoryPoints() {
-        //this.victoryPoints += (victory card object point value);
-        this.updateVictoryPointsDisplay();
-    }
-
-    updateVictoryPointsDisplay() {
-        if (Game.currentPlayer === "playerOne") {
-            $('.totalPoints1').text(this.victoryPoints);
-        } else {
-            $('.totalPoints2').text(this.victoryPoints);
-        }
-    }
-
     receiveSpices(yellow, red, green, brown) {
         // this.yellow += (merchant card object point value);
         // this.red += (merchant card object point value); 
@@ -40,9 +26,9 @@ class Player {
         this.updateSpicePointsDisplay();
     }
 
-    spiceTransaction(){
-        if( Array.isArray(merch))
-    }
+    // spiceTransaction(){
+    //     if( Array.isArray(merch)){}
+    // }
 
     updateSpicePointsDisplay() {
         if (Game.currentPlayer === "playerOne") {
@@ -61,11 +47,17 @@ class Player {
     merchantClickHandler(event) {
         var merchantIndex = $(event.currentTarget).attr('data-index');
         var merchantCardValue = Game.merchantCardArray[ merchantIndex ];
-        if( Array.isArray( merchantCardValue ) ) {
-            // push merchantCardValue to array merchantCardsInHand
-        } else {
+        this.merchantCardsInHand.push(merchantCardValue);
 
-        }
+        // if( Array.isArray( merchantCardValue ) ) {
+        //     // push merchantCardValue to array merchantCardsInHand
+        // } else {
+        // }
+    }
+
+
+    displayCardsInHand() {
+        this.merchantCardsInHand
     }
 
     receiveCard() {}
