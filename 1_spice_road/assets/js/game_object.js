@@ -10,6 +10,7 @@ class Game {
         this.merchantCardArray = [];
         this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
         this.endTurn = this.endTurn.bind(this);
+        this.turnsLeft = 0;
         this.winCondition = 5;
     }
 
@@ -77,9 +78,11 @@ class Game {
         if (this.currentPlayer === this.playerOne) {
             $('.cardCount.playerOne').text(this.playerOne.pointCardCount);
             $('.victoryPoints.playerOne').text(victoryValue);
+            this.checkWinCondition();
         } else {
             $('.victoryPoints.playerTwo').text(this.playerTwo.victoryPoints);
             $('.cardCount.playerTwo').text(this.playerTwo.pointCardCount);
+            this.checkWinCondition();
         }
     }
 
@@ -103,9 +106,37 @@ class Game {
             this.merchantCardArray.push(tradeCard);
         }
         this.displayMerchantCardInfo();
-    }    
+    }
 
+    checkWinCondition() {
+        if (this.playerOne.pointCardCount === 5 || this.playerTwo.pointCardCount === 5) {
 
+            if (this.turnsLeft === 1) {
+
+                if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
+                    this.updateVictoryPointCardsDisplay();
+                    this.playerOneWins();
+                } else {
+                    updateVictoryPointCardsDisplay();
+                    this.playerTwoWins();
+                }
+            }
+            if (this.currentPlayer === this.playerOne) {
+                this.currentPlayer = this.playerTwo;
+                this.turnsLeft = 1;
+            } else {
+                this.currentPlayer = this.playerOne;
+                this.turnsLeft = 1;
+            }
+        }
+
+    }
+    playerOneWins() {
+        alert("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints)
+    }
+    playerTwoWins() {
+        alert("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints)
+    }
 
     createMerchantGatherCard() {
         var spiceValue = Math.floor(Math.random() * 4) + 2;
@@ -122,12 +153,12 @@ class Game {
     }
 
     displayMerchantCardInfo() {
-        for( var counter = 0; counter < 6; counter++ ){
+        for (var counter = 0; counter < 6; counter++) {
             var merchantInnerArray = this.merchantCardArray[counter];
-            if( Array.isArray( merchantInnerArray ) ){
-                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Trade " + merchantInnerArray[0] + "<br/> for " + merchantInnerArray[1] );
+            if (Array.isArray(merchantInnerArray)) {
+                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Trade " + merchantInnerArray[0] + "<br/> for " + merchantInnerArray[1]);
             } else {
-                $(".merchantCardRowDiv [data-index='" + counter + "']").text("Receive " + merchantInnerArray );
+                $(".merchantCardRowDiv [data-index='" + counter + "']").text("Receive " + merchantInnerArray);
             }
         }
 
