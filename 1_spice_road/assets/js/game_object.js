@@ -12,7 +12,7 @@ class Game {
         this.playerTwo.merchantCardsInHand.push(3)
         this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
         this.endTurn = this.endTurn.bind(this);
-        this.turnsLeft = 0;
+        this.firstTurn = true;
         this.winCondition = 5;
         this.getMerchantToHand = this.getMerchantToHand.bind(this);
         // this.getMerchantToHand = this.getMerchantToHand.bind(this);
@@ -54,20 +54,23 @@ class Game {
                 } else {
                     $(".availableCardsRowDiv [data-index='" + merchIndex + "']").text("Receive " + merchantHandArray[merchIndex]);
                 }
-
-
             }
-
-
     }
 
     endTurn() {
         if (this.currentPlayer === this.playerOne) {
             this.currentPlayer = this.playerTwo;
+            if(this.firstTurn===true){
+                $('.resetTurnOne').text(' ');
+                this.firstTurn = false;
+            }
+            this.displayMerchantCardsInHand();
         } else {
             this.currentPlayer = this.playerOne;
+            this.displayMerchantCardsInHand();
         }
     }
+
 
     createGameStartCard() {
         var startingCard = {
