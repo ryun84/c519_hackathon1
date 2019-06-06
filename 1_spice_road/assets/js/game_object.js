@@ -12,7 +12,7 @@ class Game {
         this.endTurn = this.endTurn.bind(this);
         this.turnsLeft = 0;
         this.winCondition = 5;
-        this.getMerchantToHand = this.getMerchantToHand.bind(this);
+        // this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
 
     clickHandlers() {
