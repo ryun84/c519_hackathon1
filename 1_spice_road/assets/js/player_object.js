@@ -44,16 +44,7 @@ class Player {
         }
     }
 
-    merchantClickHandler(event) {
-        var merchantIndex = $(event.currentTarget).attr('data-index');
-        var merchantCardValue = Game.merchantCardArray[ merchantIndex ];
-        this.merchantCardsInHand.push(merchantCardValue);
 
-        // if( Array.isArray( merchantCardValue ) ) {
-        //     // push merchantCardValue to array merchantCardsInHand
-        // } else {
-        // }
-    }
 
 
     displayCardsInHand() {
