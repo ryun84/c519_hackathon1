@@ -16,7 +16,10 @@ class Game {
         this.winCondition = 5;
         this.turnsLeft = 0;
         this.getMerchantToHand = this.getMerchantToHand.bind(this);
+
         this.merchantClickHandler = this.merchantClickHandler.bind(this);
+
+        this.disableClick = false;
         // this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
 
@@ -28,6 +31,9 @@ class Game {
     }
 
     getMerchantToHand(event) {
+        if (this.disableClick === true) {
+            return;
+        }
         if (this.currentPlayer.merchantCardsInHand.length === 5) {
             return;
         }
@@ -45,6 +51,8 @@ class Game {
         this.merchantCardArray.splice(merchIndex, 1, newMerchCard);
         this.displayMerchantCardsInHand();
         this.displayMerchantCardInfo();
+        this.disableClick = true;
+        setTimeout(this.endTurn, 3000);
     }
 
     displayMerchantCardsInHand() {
@@ -60,29 +68,24 @@ class Game {
     }
 
     endTurn() {
+        var currentPlayerTitle;
         if (this.currentPlayer === this.playerOne) {
+            this.disableClick = false;
             this.currentPlayer = this.playerTwo;
+            currentPlayerTitle = "Player Two";
+            $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
             if (this.firstTurn === true) {
                 $('.resetTurnOne').text(' ');
                 this.firstTurn = false;
             }
             this.displayMerchantCardsInHand();
         } else {
+            this.disableClick = false;
             this.currentPlayer = this.playerOne;
+            currentPlayerTitle = "Player One";
+            $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
             this.displayMerchantCardsInHand();
         }
-    }
-
-
-    createGameStartCard() {
-        var startingCard = {
-            // properties of however many yellow spices we want the players to start with
-        }
-        var startingCardDivIndex = $("*[data-index='0']");
-        // this is selecting the first div in the availableCards container div
-        // once the above div is selected, we will have to pass in value from startingCard
-        // this card should still function like any other merchant card and be able to be popped/deleted from players availableCards(?) array and...
-        // pushed into the discardedCards(?) array (and vice versa after clicking REST), all while updating what is displayed.
     }
 
     createFirstPointCards() {
@@ -104,6 +107,9 @@ class Game {
     }
 
     pointClickHandler(event) {
+        if (this.disableClick === true) {
+            return;
+        }
         var pointIndex = $(event.currentTarget).attr('data-index');
         if (this.currentPlayer.yellow > 0) {
             this.currentPlayer.yellow -= 1;
@@ -112,21 +118,25 @@ class Game {
             this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
             this.updateVictoryPointsDisplay();
             this.updateVictoryPointCardsDisplay();
+
             this.updateSpiceCountDisplay();
+
+            this.disableClick = true;
+            setTimeout(this.endTurn, 3000);
+
         } else {
             alert("You do not have enough yellow spice to make this move");
         }
     }
 
     updateVictoryPointsDisplay() {
-        var victoryValue = parseFloat(this.playerOne.victoryPoints);
         if (this.currentPlayer === this.playerOne) {
-            $('.cardCount.playerOne').text(this.playerOne.pointCardCount);
-            $('.victoryPoints.playerOne').text(victoryValue);
+            $('.cardCount.playerOne').html("Victory Card Count <br/>" + this.playerOne.pointCardCount);
+            $('.victoryPoints.playerOne').html("Victory Points <br/>" + this.playerOne.victoryPoints);
             this.checkWinCondition();
         } else {
-            $('.victoryPoints.playerTwo').text(this.playerTwo.victoryPoints);
-            $('.cardCount.playerTwo').text(this.playerTwo.pointCardCount);
+            $('.victoryPoints.playerTwo').html("Victory Points <br/>" + this.playerTwo.victoryPoints);
+            $('.cardCount.playerTwo').html("Victory Card Count <br/>" + this.playerTwo.pointCardCount);
             this.checkWinCondition();
         }
     }
@@ -161,9 +171,11 @@ class Game {
                 if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
                     this.updateVictoryPointCardsDisplay();
                     this.playerOneWins();
+                    return;
                 } else {
                     updateVictoryPointCardsDisplay();
                     this.playerTwoWins();
+                    return;
                 }
             }
             if (this.currentPlayer === this.playerOne) {
