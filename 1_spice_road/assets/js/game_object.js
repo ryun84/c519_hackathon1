@@ -138,11 +138,11 @@ class Game {
     }
 
     updateVictoryPointCardsDisplay() {
-        $("#zeroIndex").html("Victory Points: <br/> " + this.pointsCardArray[0]);
-        $("#oneIndex").html("Victory Points: <br/>" + this.pointsCardArray[1]);
-        $("#twoIndex").html("Victory Points: <br/>" + this.pointsCardArray[2]);
-        $("#threeIndex").html("Victory Points: <br/>" + this.pointsCardArray[3]);
-        $("#fourIndex").html("Victory Points: <br/>" + this.pointsCardArray[4]);
+        $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
+        $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
+        $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
+        $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
+        $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
     }
 
     createMerchantCard() {
