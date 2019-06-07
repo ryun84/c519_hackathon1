@@ -13,9 +13,8 @@ body, main {
     height: 50vh;
     position: relative;
 }
-
 #gameLogo {
-    opacity: .90;
+    opacity: .80;
 }
 .pointsCardRowDiv {
     height: 45%;
@@ -24,16 +23,14 @@ body, main {
     left: 19%;
     top: 3%;
 }
-
 .cardContainer {
     width: 12%;
     height: 99%;
     float: right;
     position: relative;
 }
-
 .card {
-    background-color: aqua;
+    background-color: rgb(169, 206, 216);
     width: 90%;
     height: 95%;
     top: 5%;
@@ -41,7 +38,6 @@ body, main {
     position: absolute;
     text-align: center;
 }
-
 .merchantCardRowDiv {
     height: 45%;
     width: 80%;
@@ -49,29 +45,24 @@ body, main {
     left: 19%;
     top: 5%;
 }
-
 .pointCardBack {
-    background-color: purple;
+    background-color: rgb(209, 135, 209);
 }
-
 .merchantCardBack {
-    background-color: yellow;
+    background-color: rgb(197, 146, 27);
 }
-
 .playerArea {
     color: white;
     width: 100vw;
     height: 50vh;
     position: relative;
 }
-
 .cardContainerPlayer {
     width: 19%;
     height:100%;
     float: left;
     position: relative;
 }
-
 .availableCardsRowDiv, .playerDiscardArea, .playerActionArea {
     color: black;
     vertical-align: top;
@@ -82,20 +73,16 @@ body, main {
     margin-top: 0;
     margin-left: 0;
 }
-
 .availableCardsRowDiv {
     width: 49%;
 }
-
 .playerDiscardArea {
     width: 24%;
     left: 7%;
     display: none;
 }
-
 .playerActionArea {
     width: 24%;
-    
 }
 .playerActionArea div{
     visibility: hidden;
@@ -103,7 +90,6 @@ body, main {
 .playerActionButtons_Title{
     visibility: hidden;
 }
-
 .availableCardsRow_Title, .playerDiscardArea_Title, .playerActionButtons_Title {
     position: relative;
     height: 5%;
@@ -114,19 +100,15 @@ body, main {
     margin-top: 0.5%;
     text-align: center;
 }
-
 .availableCardsRow_Title {
     width: 49%;
 }
-
 .playerDiscardArea_Title {
     width: 24%;
 }
-
 .playerActionButtons_Title {
     width: 24%;
 }
-
 .discardArea {
     background-color: lightblue;
     width: 48%;
@@ -136,19 +118,27 @@ body, main {
     text-align: center;
     top: 5%;
 }
-
 .playerStats_Title {
     position: relative;
     height: 5%;
     width: 49%;
     display: inline-block;
-    left: 1%;
+    left: 12.5%;
     top: 0;
     margin-left: 0;
     margin-top: 1.5%;
     text-align: center;
 }
-
+.playerStats_Title.playerTwo{
+    display: inline-block;
+    position: relative;
+    right: 10%;
+}
+.playerStats_Title.playerOne{
+    display: inline-block;
+    left: 20%;
+    width: 30%;
+}
 .playerActionArea>div {
     background-color: lightblue;
     width: 48%;
@@ -158,29 +148,17 @@ body, main {
     text-align: center;
     border: 1px solid black;    
 }
-
 .playerStatsRow {
     height: 32%;
-    width: 48%;
+    width: 42%;
     position: relative;
     display: inline-block;
-    left: 13.5%;
+    left: 25%;
     margin-top: 0.5%; 
 }
-
 .playerStatsRow.playerTwo{
     left: 15%;
 }
-/* .playerStatsRowPlayerTwo {
-    border: solid 1px black;
-    height: 30%;
-    width: 48%;
-    position: relative;
-    display: inline-block;
-    top: 10%;
-    left:2%;
-    margin-top: 2.5%;
-} */
 .statRowContainer{
     color: black;
     width: 16%;
@@ -213,10 +191,10 @@ body, main {
     background-color: yellow;
 }
 .victoryPoints{
-    background-color: lightcoral;
+    background-color: rgb(219, 217, 217);
 }
 .cardCount{
-    background-color: lightsalmon;
+    background-color: rgb(186, 172, 218);
 }
 .image {
     position: absolute;
