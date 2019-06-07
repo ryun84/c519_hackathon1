@@ -1,97 +1,206 @@
+body, main {
+    height: 100vh;
+    margin: 0;
+    background-image: url(./assets/js/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.backgroundOpacity {
+    background-color: rgba(0,0,0,.35);
+}
 .masterCardDiv {
-    width: 98vw;
-    height: 49vh;
-    background-color: rgb(163, 147, 94);
+    width: 100vw;
+    height: 50vh;
     position: relative;
 }
+#gameLogo {
+    opacity: .80;
+}
 .pointsCardRowDiv {
-    height: 40%;
+    height: 45%;
     width: 80%;
     position: relative;
     left: 19%;
-    top: 5%;
-    border: solid 1px black;
+    top: 3%;
 }
 .cardContainer {
-    border: solid 1px black;
     width: 12%;
     height: 99%;
     float: right;
     position: relative;
 }
 .card {
-    background-color: aqua;
+    background-color: rgb(169, 206, 216);
     width: 90%;
-    height: 90%;
+    height: 95%;
     top: 5%;
     left: 5%;
     position: absolute;
     text-align: center;
 }
 .merchantCardRowDiv {
-    border: solid 1px black;
-    height: 40%;
+    height: 45%;
     width: 80%;
     position: relative;
     left: 19%;
-    top: 10%;
+    top: 5%;
 }
 .pointCardBack {
-    background-color: purple;
+    background-color: rgb(209, 135, 209);
 }
 .merchantCardBack {
-    background-color: yellow;
-} 
+    background-color: rgb(197, 146, 27);
+}
 .playerArea {
-    width: 98vw;
-    height: 49vh;
-    background-color: rgb(131, 125, 105);
+    color: white;
+    width: 100vw;
+    height: 50vh;
     position: relative;
 }
 .cardContainerPlayer {
-    border: solid 1px black;
-    width: 15%;
-    height: 99%;
+    width: 19%;
+    height:100%;
     float: left;
     position: relative;
 }
-.availableCardsRowDiv {
-    border: solid 1px black;
-    height: 40%;
-    width: 60%;
+.availableCardsRowDiv, .playerDiscardArea, .playerActionArea {
+    color: black;
+    vertical-align: top;
+    height: 45%;
     position: relative;
     display: inline-block;
     left: 1%;
-    top: 10%;
-    margin-top: 2.5%;
-    margin-left: 0%;
-} 
+    margin-top: 0;
+    margin-left: 0;
+}
+.availableCardsRowDiv {
+    width: 49%;
+}
+.playerDiscardArea {
+    width: 24%;
+    left: 7%;
+    display: none;
+}
 .playerActionArea {
-    border: solid 1px black;
-    height: 40%;
-    width: 30%;
+    width: 24%;
+}
+.playerActionArea div{
+    visibility: hidden;
+}
+.playerActionButtons_Title{
+    visibility: hidden;
+}
+.availableCardsRow_Title, .playerDiscardArea_Title, .playerActionButtons_Title {
     position: relative;
+    height: 5%;
     display: inline-block;
-    left: 8%;
-    top: 10%;
-    margin-top: 2.5%;
-} 
-.playerInfoContainer {
-    border: solid 1px black;
-    width: 32.5%;
+    left: 1%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0.5%;
+    text-align: center;
+}
+.availableCardsRow_Title {
+    width: 49%;
+}
+.playerDiscardArea_Title {
+    width: 24%;
+}
+.playerActionButtons_Title {
+    width: 24%;
+}
+.discardArea {
+    background-color: lightblue;
+    width: 48%;
+    height: 95%;
+    position: relative;
+    float: left;
+    text-align: center;
+    top: 5%;
+}
+.playerStats_Title {
+    position: relative;
+    height: 5%;
+    width: 49%;
+    display: inline-block;
+    left: 12.5%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 1.5%;
+    text-align: center;
+}
+.playerStats_Title.playerTwo{
+    display: inline-block;
+    position: relative;
+    right: 10%;
+}
+.playerStats_Title.playerOne{
+    display: inline-block;
+    left: 20%;
+    width: 30%;
+}
+.playerActionArea>div {
+    background-color: lightblue;
+    width: 48%;
     height: 99%;
     position: relative;
     float: left;
     text-align: center;
+    border: 1px solid black;    
 }
-
-
-
-/* .discarded {
-    height: 20%;
-    width: 10%;
-    position: absolute;
-    right: 15%;
+.playerStatsRow {
+    height: 32%;
+    width: 42%;
     position: relative;
-    background-color: green;
-}  */
+    display: inline-block;
+    left: 25%;
+    margin-top: 0.5%; 
+}
+.playerStatsRow.playerTwo{
+    left: 15%;
+}
+.statRowContainer{
+    color: black;
+    width: 16%;
+    height: 100%;
+    position: relative;
+    float: left;
+    text-align: center;
+    font-size: 2vh;
+}
+.spice {
+    height: 90%;
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    position: relative;
+}
+.yellow {
+    background-color: grey;
+    display: none;
+}
+.green {
+    background-color: grey;
+    display: none;
+}
+.red {
+    background-color: grey;
+    display: none;
+}
+.brown {
+    background-color: yellow;
+}
+.victoryPoints{
+    background-color: rgb(219, 217, 217);
+}
+.cardCount{
+    background-color: rgb(186, 172, 218);
+}
+.image {
+    position: absolute;
+    display: inline-block;
+    height: 80%;
+    width: 30%;
+    top: 5%;
+    left: 1%;
+}
