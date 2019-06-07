@@ -1,15 +1,22 @@
 body, main {
     height: 100vh;
     margin: 0;
+    background-image: url(./assets/js/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
-
+.backgroundOpacity {
+    background-color: rgba(0,0,0,.35);
+}
 .masterCardDiv {
     width: 100vw;
     height: 50vh;
-    background-color: rgb(163, 147, 94);
     position: relative;
 }
 
+#gameLogo {
+    opacity: .90;
+}
 .pointsCardRowDiv {
     height: 45%;
     width: 80%;
@@ -52,9 +59,9 @@ body, main {
 }
 
 .playerArea {
+    color: white;
     width: 100vw;
     height: 50vh;
-    background-color: rgb(146, 144, 138);
     position: relative;
 }
 
@@ -66,6 +73,7 @@ body, main {
 }
 
 .availableCardsRowDiv, .playerDiscardArea, .playerActionArea {
+    color: black;
     vertical-align: top;
     height: 45%;
     position: relative;
@@ -81,10 +89,19 @@ body, main {
 
 .playerDiscardArea {
     width: 24%;
+    left: 7%;
+    display: none;
 }
 
 .playerActionArea {
     width: 24%;
+    
+}
+.playerActionArea div{
+    visibility: hidden;
+}
+.playerActionButtons_Title{
+    visibility: hidden;
 }
 
 .availableCardsRow_Title, .playerDiscardArea_Title, .playerActionButtons_Title {
@@ -113,11 +130,11 @@ body, main {
 .discardArea {
     background-color: lightblue;
     width: 48%;
-    height: 99%;
+    height: 95%;
     position: relative;
     float: left;
     text-align: center;
-    border: 1px solid black;
+    top: 5%;
 }
 
 .playerStats_Title {
@@ -147,12 +164,12 @@ body, main {
     width: 48%;
     position: relative;
     display: inline-block;
-    left: 1%;
+    left: 13.5%;
     margin-top: 0.5%; 
 }
 
 .playerStatsRow.playerTwo{
-    left: 2.5%;
+    left: 15%;
 }
 /* .playerStatsRowPlayerTwo {
     border: solid 1px black;
@@ -165,6 +182,7 @@ body, main {
     margin-top: 2.5%;
 } */
 .statRowContainer{
+    color: black;
     width: 16%;
     height: 100%;
     position: relative;
@@ -172,7 +190,6 @@ body, main {
     text-align: center;
     font-size: 2vh;
 }
-
 .spice {
     height: 90%;
     width: 90%;
@@ -182,12 +199,15 @@ body, main {
 }
 .yellow {
     background-color: grey;
+    display: none;
 }
 .green {
     background-color: grey;
+    display: none;
 }
 .red {
     background-color: grey;
+    display: none;
 }
 .brown {
     background-color: yellow;
