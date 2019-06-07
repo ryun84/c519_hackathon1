@@ -20,7 +20,6 @@ class Game {
         this.merchantClickHandler = this.merchantClickHandler.bind(this);
 
         this.disableClick = false;
-        // this.getMerchantToHand = this.getMerchantToHand.bind(this);
     }
 
     clickHandlers() {
@@ -47,7 +46,6 @@ class Game {
         } else {
             var newMerchCard = this.createMerchantTradeCard();
         }
-
         this.merchantCardArray.splice(merchIndex, 1, newMerchCard);
         this.displayMerchantCardsInHand();
         this.displayMerchantCardInfo();
@@ -72,13 +70,13 @@ class Game {
         if (this.currentPlayer === this.playerOne) {
             this.disableClick = false;
             this.currentPlayer = this.playerTwo;
+            this.displayMerchantCardsInHand();
             currentPlayerTitle = "Player Two";
             $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
             if (this.firstTurn === true) {
                 $('.resetTurnOne').text(' ');
                 this.firstTurn = false;
             }
-            this.displayMerchantCardsInHand();
         } else {
             this.disableClick = false;
             this.currentPlayer = this.playerOne;
@@ -103,7 +101,6 @@ class Game {
     generatePointCards() {
         var pointsValue = Math.floor(Math.random() * 20) + 6;
         this.pointsCardArray.push(pointsValue);
-
     }
 
     pointClickHandler(event) {
@@ -118,12 +115,11 @@ class Game {
             this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
             this.updateVictoryPointsDisplay();
             this.updateVictoryPointCardsDisplay();
-
             this.updateSpiceCountDisplay();
-
             this.disableClick = true;
-            setTimeout(this.endTurn, 3000);
-
+            if (this.turnsLeft ===0){
+                setTimeout(this.endTurn, 3000);
+            }
         } else {
             alert("You do not have enough yellow spice to make this move");
         }
@@ -147,8 +143,6 @@ class Game {
         $("#twoIndex").html("Victory Points: <br/>" + this.pointsCardArray[2]);
         $("#threeIndex").html("Victory Points: <br/>" + this.pointsCardArray[3]);
         $("#fourIndex").html("Victory Points: <br/>" + this.pointsCardArray[4]);
-
-
     }
 
     createMerchantCard() {
@@ -165,36 +159,27 @@ class Game {
 
     checkWinCondition() {
         if (this.playerOne.pointCardCount === 5 || this.playerTwo.pointCardCount === 5) {
-
             if (this.turnsLeft === 1) {
-
                 if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
                     this.updateVictoryPointCardsDisplay();
-                    this.playerOneWins();
+                    alert("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints)
                     return;
                 } else {
                     updateVictoryPointCardsDisplay();
-                    this.playerTwoWins();
+                    alert("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints)
                     return;
                 }
             }
-            if (this.currentPlayer === this.playerOne) {
-                this.currentPlayer = this.playerTwo;
+            if (this.currentPlayer === this.playerOne) {              
                 alert("Player Two has one turn left to outspice Player One");
                 this.turnsLeft = 1;
-            } else {
-                this.currentPlayer = this.playerOne;
+                setTimeout(this.endTurn, 3000);
+            } else {                
                 alert("Player One has one turn left to outspice Player Two");
                 this.turnsLeft = 1;
+                setTimeout(this.endTurn, 3000);
             }
         }
-
-    }
-    playerOneWins() {
-        alert("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints)
-    }
-    playerTwoWins() {
-        alert("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints)
     }
 
     createMerchantGatherCard() {
@@ -220,10 +205,12 @@ class Game {
                 $(".merchantCardRowDiv [data-index='" + counter + "']").text("Receive " + merchantInnerArray);
             }
         }
-
     }
 
     merchantClickHandler(event){
+        if (this.disableClick === true) {
+            return;
+        }
         var useCardIndex = $(event.currentTarget).attr('data-index');
         var merchCardToUseData = this.currentPlayer.merchantCardsInHand[useCardIndex];
         if (Array.isArray(merchCardToUseData)) {
@@ -239,7 +226,9 @@ class Game {
             var spiceToStraightAdd = merchCardToUseData;
             this.currentPlayer.yellow += spiceToStraightAdd;
         }
+        this.disableClick = true;
         this.updateSpiceCountDisplay();
+        setTimeout(this.endTurn, 3000);
     }
 
     updateSpiceCountDisplay(){
