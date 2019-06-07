@@ -16,12 +16,12 @@
 <body>
 
     <main>
-
+    <div class="backgroundOpacity">
         <div class="masterCardDiv">
-            <img src="https://i0.wp.com/www.thefamilygamers.com/wp-content/uploads/Century-cover.jpg" class="image">
+            <img id="gameLogo" src="https://i0.wp.com/www.thefamilygamers.com/wp-content/uploads/Century-cover.jpg" class="image">
             <div class="pointsCardRowDiv">
                 <div class="cardContainer point">
-                    <div class="card pointCardBack" data-type="points">Vic Back</div>
+                    <div class="card pointCardBack" data-type="points">Victory Cards</div>
                 </div>
                 <div class="cardContainer point">
                     <div class="card points" id="fourIndex" data-type="points" data-index="4">Vic 5</div>
@@ -41,7 +41,7 @@
             </div>
             <div class="merchantCardRowDiv">
                 <div class="cardContainer">
-                    <div class="card merchantCardBack" data-type="merchant">Merchant Back</div>
+                    <div class="card merchantCardBack" data-type="merchant">Merchant Cards</div>
                 </div>
                 <div class="cardContainer">
                     <div class="card merchant" data-type="merchant" data-index="5">Merchant</div>
@@ -62,16 +62,17 @@
                     <div class="card merchant" data-type="merchant" data-index="0">Merchant</div>
                 </div>
             </div>
-        </div>
+        
+    </div>
         <div class="playerArea">
             <div class="availableCardsRow_Title">
                 <div id="playerMerchantCardsInHandNameDisplay">Player 1 Playable Cards</div>
             </div>
-            <div class="playerDiscardArea_Title">
+            <!-- <div class="playerDiscardArea_Title">
                 <div>Player 1 Discarded Cards</div>
-            </div>
+            </div> -->
             <div class="playerActionButtons_Title">
-                <div>Player 1 Actions</div>
+                <div>Player Actions</div>
             </div>
             <div class="availableCardsRowDiv">
                 <div class="cardContainerPlayer">
@@ -92,32 +93,23 @@
             </div>
             <div class="playerDiscardArea">
                 <div class="discardArea">
-                    <div class="discard ">Discarded Card</div>
+                    <div class="discard ">Rest</div>
                 </div>
-                <div class="discardArea">
+                <!-- <div class="discardArea">
                     <div class="numberDiscarded">Number Discarded</div>
-                </div>
+                </div> -->
             </div>
             <div class="playerActionArea">
                 <div class="restButton">Rest</div>
                 <div class="endTurnButton">End Turn</div>
             </div>
             <div class="playerStats_Title playerOne">
-                <div>Player One Resources and Stats</div>
+                <div>Player One Spices and Victory Points</div>
             </div>
             <div class="playerStats_Title playerTwo">
-                <div>Player Two Resources and Stats</div>
+                <div>Player Two Spices and Victory Points</div>
             </div>
             <div class="playerStatsRow playerOne">
-                <div class="statRowContainer">
-                    <div class="yellow spice playerOne" id="p1_sq1">Reserved</div>
-                </div>
-                <div class="statRowContainer">
-                    <div class="red spice playerOne" id="p1_sq2">Reserved</div>
-                </div>
-                <div class="statRowContainer">
-                    <div class="green spice playerOne" id="p1_sq3">Reserved</div>
-                </div>
                 <div class="statRowContainer">
                     <div class="brown spice playerOne" id="p1_sq4">Yellow Spices<br/>3</div>
                 </div>
@@ -138,15 +130,6 @@
                 <div class="statRowContainer">
                     <div class="brown spice playerTwo" id="p2_sq4">Yellow Spices<br/>3</div>
                 </div>
-                <div class="statRowContainer">
-                    <div class="green spice playerTwo" id="p2_sq3">Reserved</div>
-                </div>
-                <div class="statRowContainer">
-                    <div class="red spice playerTwo" id="p2_sq2">Reserved</div>
-                </div>
-                <div class="statRowContainer">
-                    <div class="yellow spice playerTwo" id="p2_sq1">Reserved</div>
-                </div>
             </div>
         </div>
 
@@ -156,7 +139,7 @@
             <div class="endTurn ">
             </div>
         </div>
-
+    </div>
     </main>
 
 </body>
