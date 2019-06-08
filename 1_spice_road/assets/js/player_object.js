@@ -1,9 +1,11 @@
 class Player {
     constructor() {
-        this.yellow = 0;
-        this.red = 0;
-        this.green = 0;
-        this.brown = 0;
+        this.spices = {     // check with how this connects to this.playerOne.spices and this.playerTwo.spices from game_object constructor
+            "yellow": 0,
+            "red": 0,
+            "green": 0,
+            "brown": 0
+        };
         this.victoryPoints = 0;
         this.pointCardCount = 0;
         this.merchantCardsInHand = [];

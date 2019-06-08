@@ -12,7 +12,7 @@ class Game {
         this.availablePointsCardsArrayforPlayerToClickAndClaim = [];
         this.availableMerchCardsArrayforPlayertoClickAndC = [];
         this.playerOne.merchantCardsInHand.push(3);
-        this.playerTwo.merchantCardsInHand.push(3)
+        this.playerTwo.merchantCardsInHand.push(3);
         this.firstTurn = true;
         this.winCondition = 5;
         this.isLastTurn = 0;
@@ -26,6 +26,11 @@ class Game {
         $('.discardArea').click(this.endTurn);
     }
 
+    generalRandomNumberGenerator( min, max ){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    getMerchantToHand(event) {
     playerRetrieveMerchantCardAndAddToHand(event) {
         if (this.disableClick === true) {
             return;
@@ -37,7 +42,7 @@ class Game {
         var merchCardInfo = this.availableMerchCardsArrayforPlayertoClickAndC[merchIndex];
         this.currentPlayer.merchantCardsInHand.push(merchCardInfo);
         var newMerchCard;
-        var rNG = Math.ceil(Math.random() * 2);
+        var rNG = generalRandomNumberGenerator(1,2);
         if (rNG === 1) {
             var newMerchCard = this.createMerchantGatherCard();
         } else {
@@ -96,7 +101,7 @@ class Game {
     }
 
     generatePointCards() {
-        var pointsValue = Math.floor(Math.random() * 20) + 6;
+        var pointsValue = generalRandomNumberGenerator(6,25);
         this.availablePointsCardsArrayforPlayerToClickAndClaim.push(pointsValue);
     }
 
@@ -109,7 +114,7 @@ class Game {
             this.currentPlayer.yellow -= 1;
             this.currentPlayer.victoryPoints += this.availablePointsCardsArrayforPlayerToClickAndClaim[pointIndex];
             this.currentPlayer.pointCardCount += 1;
-            this.availablePointsCardsArrayforPlayerToClickAndClaim.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
+            this.availablePointsCardsArrayforPlayerToClickAndClaim.splice( pointIndex, 1, generalRandomNumberGenerator(6,25) );
             this.updateVictoryPointsDisplay();
             this.updateVictoryPointCardsDisplay();
             this.updateSpiceCountDisplay();
@@ -147,7 +152,7 @@ class Game {
     }
 
     createMerchantCard() {
-        var rNG = Math.ceil(Math.random() * 2);
+        var rNG = generalRandomNumberGenerator(1,2);
         if (rNG === 1) {
             var gatherCard = this.createMerchantGatherCard();
             this.availableMerchCardsArrayforPlayertoClickAndC.push(gatherCard);
@@ -184,13 +189,13 @@ class Game {
     }
 
     createMerchantGatherCard() {
-        var spiceValue = Math.floor(Math.random() * 4) + 2;
+        var spiceValue = generalRandomNumberGenerator(2,5);
         return spiceValue;
     }
 
     createMerchantTradeCard() {
-        var topValue = Math.floor(Math.random() * 5) + 2; // should change variables to be more readable
-        var bottomValue = Math.floor(Math.random() * 5) + 2;
+        var topValue = generalRandomNumberGenerator(2,6); // should change variables to be more readable
+        var bottomValue = generalRandomNumberGenerator(2,6);
         var tradeCard = [];
         var tradeSpecifications = {
             cost: topValue,
