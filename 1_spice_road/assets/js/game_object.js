@@ -226,6 +226,9 @@ class Game {
         }
         var useCardIndex = $(event.currentTarget).attr('data-index');
         var merchCardToUseData = this.currentPlayer.merchantCardsInHand[useCardIndex];
+        if (merchCardToUseData == undefined) {
+            return;
+        }
         if (Array.isArray(merchCardToUseData)) {
             var spiceToDeduct = merchCardToUseData[0];
             var spiceToAdd = merchCardToUseData[1];
