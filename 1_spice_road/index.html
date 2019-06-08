@@ -15,10 +15,12 @@
 <main>
     <div class="backgroundOpacity">
         <div class="masterCardDiv">
-            <img id="gameLogo" src="./assets/js/Century-cover.jpg" class="image">
+            <div class="imgContainer">
+                <img id="gameLogo" src="./assets/js/Century-cover.jpg" class="image">
+            </div>   
             <div class="pointsCardRowDiv">
                 <div class="cardContainer point">
-                    <div class="card pointCardBack" data-type="points">Victory Cards</div>
+                    <div class="card pointCardBack" data-type="points"></div>
                 </div>
                 <div class="cardContainer point">
                     <div class="card points" id="fourIndex" data-type="points" data-index="4">Vic 5</div>
@@ -38,7 +40,7 @@
             </div>
             <div class="merchantCardRowDiv">
                 <div class="cardContainer">
-                    <div class="card merchantCardBack" data-type="merchant">Merchant Cards</div>
+                    <div class="card merchantCardBack" data-type="merchant"></div>
                 </div>
                 <div class="cardContainer">
                     <div class="card merchant" data-type="merchant" data-index="5">Merchant</div>
@@ -101,24 +103,24 @@
             </div>
             <div class="playerStatsRow playerOne">
                 <div class="statRowContainer">
-                    <div class="brown spice playerOne" id="p1_sq4">Yellow Spices<br/>3</div>
+                    <div class="brown spice playerOne playerOneInfo" id="p1_sq4">Yellow Spices<br/>3</div>
                 </div>
                 <div class="statRowContainer">
-                    <div class="spice victoryPoints playerOne">Victory Points<br/>0</div>
+                    <div class="spice victoryPoints playerOne playerOneInfo">Victory Points<br/>0</div>
                 </div>
                 <div class="statRowContainer">
-                    <div class="spice cardCount playerOne">Victory Card<br/>Count<br/>0</div>
+                    <div class="spice cardCount playerOne playerOneInfo">Victory Card<br/>Count<br/>0</div>
                 </div>
             </div>
             <div class="playerStatsRow playerTwo">
                 <div class="statRowContainer playerTwo">
-                    <div class="spice cardCount playerTwo">Victory Card<br/>Count<br/>0</div>
+                    <div class="spice cardCount playerTwo playerTwoInfo">Victory Card<br/>Count<br/>0</div>
                 </div>
                 <div class="statRowContainer">
-                    <div class="spice victoryPoints playerTwo">Victory Points<br/>0</div>
+                    <div class="spice victoryPoints playerTwo playerTwoInfo">Victory Points<br/>0</div>
                 </div>
                 <div class="statRowContainer">
-                    <div class="brown spice playerTwo" id="p2_sq4">Yellow Spices<br/>4</div>
+                    <div class="brown spice playerTwo playerTwoInfo" id="p2_sq4">Yellow Spices<br/>4</div>
                 </div>
             </div>
         </div>
