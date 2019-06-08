@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+        this.currentPlayerClaimPointCardClickHandler = this.currentPlayerClaimPointCardClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
         this.playerRetrieveMerchantCardAndAddToHand = this.playerRetrieveMerchantCardAndAddToHand.bind(this);
         this.merchantClickHandler = this.merchantClickHandler.bind(this);
         this.endTurn = this.endTurn.bind(this);
@@ -20,7 +20,7 @@ class Game {
     }
 
     applyClickHandlers() {
-        $('.points').click(this.pointClickHandler);
+        $('.points').click(this.currentPlayerClaimPointCardClickHandler);
         $('.playerMerchant').click(this.merchantClickHandler);
         $('.merchant').click(this.playerRetrieveMerchantCardAndAddToHand);
         $('.discardArea').click(this.endTurn);
@@ -44,13 +44,13 @@ class Game {
             var newMerchCard = this.createMerchantTradeCard();
         }
         this.availableMerchCardsArrayforPlayertoClickAndC.splice(merchIndex, 1, newMerchCard);
-        this.displayMerchantCardsInHand();
+        this.displayCurrentPlayerMerchantCardsInHand();
         this.displayMerchantCardInfo();
         this.disableClick = true;
         setTimeout(this.endTurn, 3000);
     }
 
-    displayMerchantCardsInHand() {
+    displayCurrentPlayerMerchantCardsInHand() {
         var merchantHandArray = this.currentPlayer.merchantCardsInHand;
         $(".availableCardsRowDiv [data-index='" + 0 + "']").text("Receive " + merchantHandArray[merchIndex]);
         for (var merchIndex = 0; merchIndex <= this.currentPlayer.merchantCardsInHand.length - 1; merchIndex++) {
@@ -67,7 +67,7 @@ class Game {
         if (this.currentPlayer === this.playerOne) {
             this.disableClick = false;
             this.currentPlayer = this.playerTwo;
-            this.displayMerchantCardsInHand();
+            this.displayCurrentPlayerMerchantCardsInHand();
             currentPlayerTitle = "Player Two";
             $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
             if (this.firstTurn === true) {
@@ -79,11 +79,12 @@ class Game {
             this.currentPlayer = this.playerOne;
             currentPlayerTitle = "Player One";
             $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
-            this.displayMerchantCardsInHand();
+            this.displayCurrentPlayerMerchantCardsInHand();
         }
     }
 
     createFirstPointCards() {
+        debugger;
         for (var i = 0; i < 5; i++) {
             this.generatePointCards();
         }
@@ -100,7 +101,7 @@ class Game {
         this.availablePointsCardsArrayforPlayerToClickAndClaim.push(pointsValue);
     }
 
-    pointClickHandler(event) {
+    currentPlayerClaimPointCardClickHandler(event) {
         if (this.disableClick === true) {
             return;
         }
@@ -110,7 +111,7 @@ class Game {
             this.currentPlayer.victoryPoints += this.availablePointsCardsArrayforPlayerToClickAndClaim[pointIndex];
             this.currentPlayer.pointCardCount += 1;
             this.availablePointsCardsArrayforPlayerToClickAndClaim.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
-            this.updateVictoryPointsDisplay();
+            this.updatePlayerVictorPointAndCardCount();
             this.updateVictoryPointCardsDisplay();
             this.updateSpiceCountDisplay();
             this.disableClick = true;
@@ -122,7 +123,7 @@ class Game {
         }
     }
 
-    updateVictoryPointsDisplay() {
+    updatePlayerVictorPointAndCardCount() {
         if (this.currentPlayer === this.playerOne) {
             $('.cardCount.playerOne').html("Victory Card Count <br/>" + this.playerOne.pointCardCount);
             $('.victoryPoints.playerOne').html("Victory Points <br/>" + this.playerOne.victoryPoints);
@@ -135,15 +136,15 @@ class Game {
     }
 
     updateVictoryPointCardsDisplay() {
-        var pointsCards = $(".pointsCardRowDiv .card");
-        for (var i = 0; i < pointsCards.length; i++) {
-            pointsCards.eq(i) = this.availablePointsCardsArrayforPlayerToClickAndClaim[i];
-        }
-        // $("#zeroIndex").html("Victory Points<br/> " + this.availablePointsCardsArrayforPlayerToClickAndClaim[0]);
-        // $("#oneIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[1]);
-        // $("#twoIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[2]);
-        // $("#threeIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[3]);
-        // $("#fourIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[4]);
+        // var pointsCards = $(".pointsCardRowDiv .card");
+        // // for (var i = 0; i < pointsCards.length; i++) {
+        // //     pointsCards.eq(i) = this.availablePointsCardsArrayforPlayerToClickAndClaim[i];
+        // // }
+        $("#zeroIndex").html("Victory Points<br/> " + this.availablePointsCardsArrayforPlayerToClickAndClaim[0]);
+        $("#oneIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[1]);
+        $("#twoIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[2]);
+        $("#threeIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[3]);
+        $("#fourIndex").html("Victory Points<br/>" + this.availablePointsCardsArrayforPlayerToClickAndClaim[4]);
     }
 
     createMerchantCard() {
