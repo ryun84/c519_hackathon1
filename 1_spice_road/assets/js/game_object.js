@@ -70,6 +70,7 @@ class Game {
         if (this.currentPlayer === this.playerOne) {
             this.disableClick = false;
             this.currentPlayer = this.playerTwo;
+            this.clearPlayerCardsFromDisplay();
             this.displayMerchantCardsInHand();
             currentPlayerTitle = "Player Two";
             $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
@@ -79,6 +80,7 @@ class Game {
             }
         } else {
             this.disableClick = false;
+            this.clearPlayerCardsFromDisplay();
             this.currentPlayer = this.playerOne;
             currentPlayerTitle = "Player One";
             $('#playerMerchantCardsInHandNameDisplay').text(currentPlayerTitle + " Hand");
@@ -117,7 +119,7 @@ class Game {
             this.updateVictoryPointCardsDisplay();
             this.updateSpiceCountDisplay();
             this.disableClick = true;
-            if (this.turnsLeft ===0){
+            if (this.turnsLeft === 0) {
                 setTimeout(this.endTurn, 3000);
             }
         } else {
@@ -145,6 +147,17 @@ class Game {
         $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
     }
 
+    clearPlayerCardsFromDisplay() {
+        for (var currentPlayerIndex = 5; currentPlayerIndex >= this.currentPlayer.merchantCardsInHand.length; currentPlayerIndex--) {
+            if (this.currentPlayer.merchantCardsInHand[currentPlayerIndex] == undefined) {
+                $(".availableCardsRowDiv [data-index='" + currentPlayerIndex + "']").text(" ");
+            }
+        }
+
+
+
+    }
+
     createMerchantCard() {
         var rNG = Math.ceil(Math.random() * 2);
         if (rNG === 1) {
@@ -170,11 +183,11 @@ class Game {
                     return;
                 }
             }
-            if (this.currentPlayer === this.playerOne) {              
+            if (this.currentPlayer === this.playerOne) {
                 alert("Player Two has one turn left to outspice Player One");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
-            } else {                
+            } else {
                 alert("Player One has one turn left to outspice Player Two");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
@@ -207,7 +220,7 @@ class Game {
         }
     }
 
-    merchantClickHandler(event){
+    merchantClickHandler(event) {
         if (this.disableClick === true) {
             return;
         }
@@ -216,8 +229,9 @@ class Game {
         if (Array.isArray(merchCardToUseData)) {
             var spiceToDeduct = merchCardToUseData[0];
             var spiceToAdd = merchCardToUseData[1];
-            if( spiceToDeduct > this.currentPlayer.yellow ){
+            if (spiceToDeduct > this.currentPlayer.yellow) {
                 alert("You do not have enough resources!");
+                return;
             } else {
                 this.currentPlayer.yellow -= spiceToDeduct;
                 this.currentPlayer.yellow += spiceToAdd;
@@ -231,8 +245,8 @@ class Game {
         setTimeout(this.endTurn, 3000);
     }
 
-    updateSpiceCountDisplay(){
-        if( this.currentPlayer === this.playerOne ){
+    updateSpiceCountDisplay() {
+        if (this.currentPlayer === this.playerOne) {
             $("#p1_sq4").html("Yellow Spices<br/>" + this.playerOne.yellow);
         } else {
             $("#p2_sq4").html("Yellow Spices<br/>" + this.playerTwo.yellow);
