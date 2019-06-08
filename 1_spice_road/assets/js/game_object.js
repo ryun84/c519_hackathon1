@@ -30,7 +30,6 @@ class Game {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    getMerchantToHand(event) {
     playerRetrieveMerchantCardAndAddToHand(event) {
         if (this.disableClick === true) {
             return;
