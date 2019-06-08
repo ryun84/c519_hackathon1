@@ -1,5 +1,9 @@
 class Game {
     constructor() {
+        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+        this.getMerchantToHand = this.getMerchantToHand.bind(this);
+        this.merchantClickHandler = this.merchantClickHandler.bind(this);
+        this.endTurn = this.endTurn.bind(this);
         this.playerOne = new Player();
         this.playerTwo = new Player();
         this.playerOne.yellow = 3;
@@ -10,15 +14,9 @@ class Game {
         this.merchantCardArray = [];
         this.playerOne.merchantCardsInHand.push(3);
         this.playerTwo.merchantCardsInHand.push(3)
-        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
-        this.endTurn = this.endTurn.bind(this);
         this.firstTurn = true;
         this.winCondition = 5;
         this.turnsLeft = 0;
-        this.getMerchantToHand = this.getMerchantToHand.bind(this);
-
-        this.merchantClickHandler = this.merchantClickHandler.bind(this);
-
         this.disableClick = false;
     }
 
@@ -138,11 +136,15 @@ class Game {
     }
 
     updateVictoryPointCardsDisplay() {
-        $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
-        $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
-        $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
-        $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
-        $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
+        var pointsCards = $(".pointsCardRowDiv .card");
+        for( var i=0; i<pointsCards.length; i++){
+            pointsCards.eq(i) = this.pointsCardArray[i];
+        }
+        // $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
+        // $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
+        // $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
+        // $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
+        // $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
     }
 
     createMerchantCard() {
@@ -165,7 +167,7 @@ class Game {
                     alert("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints)
                     return;
                 } else {
-                    updateVictoryPointCardsDisplay();
+                    this.updateVictoryPointCardsDisplay();
                     alert("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints)
                     return;
                 }
@@ -188,11 +190,15 @@ class Game {
     }
 
     createMerchantTradeCard() {
-        var topValue = Math.floor(Math.random() * 5) + 2;
+        var topValue = Math.floor(Math.random() * 5) + 2; // should change variables to be more readable
         var bottomValue = Math.floor(Math.random() * 5) + 2;
         var tradeCard = [];
-        tradeCard.push(topValue);
-        tradeCard.push(bottomValue);
+        var tradeSpecifications = {
+            cost: topValue,
+            yeilds: bottomValue
+        }
+        tradeCard.push(tradeSpecifications);
+        // tradeCard.push(bottomValue);
         return tradeCard;
     }
 
@@ -207,6 +213,15 @@ class Game {
         }
     }
 
+    checkIfCanAfford( cost, playerResources ){
+        for( var key in playerResources ){
+            if( cost[key] > playerResources[key] ){
+                return false;
+            }
+        }
+        return true;
+    }
+
     merchantClickHandler(event){
         if (this.disableClick === true) {
             return;
@@ -216,6 +231,23 @@ class Game {
         if (Array.isArray(merchCardToUseData)) {
             var spiceToDeduct = merchCardToUseData[0];
             var spiceToAdd = merchCardToUseData[1];
+            this.currentPlayer.spices = {
+                yellow: 1,
+                red: 2,
+                green: 3,
+                brown: 0
+            }
+            var cost =  {
+                yellow: 0,
+                red: 1,
+                green: 2,
+                brown: 1
+            }
+            if( !this.checkIfCanAfford( cost, this.currentPlayer.spices ) ){
+                alert("You do not have enough resources!");            
+            } else {
+                // deduct
+            }
             if( spiceToDeduct > this.currentPlayer.yellow ){
                 alert("You do not have enough resources!");
             } else {
