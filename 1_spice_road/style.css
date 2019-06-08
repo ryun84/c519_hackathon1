@@ -15,6 +15,10 @@ body, main {
 }
 #gameLogo {
     opacity: .80;
+    width: 20%;
+    height: auto;
+    margin-left: .5%;
+    
 }
 .pointsCardRowDiv {
     height: 45%;
@@ -30,13 +34,33 @@ body, main {
     position: relative;
 }
 .card {
-    background-color: rgb(169, 206, 216);
     width: 90%;
     height: 95%;
     top: 5%;
     left: 5%;
     position: absolute;
     text-align: center;
+}
+.points:hover, .merchant:hover, .playerMerchant:hover{
+    box-shadow: 0px 0px 5px 5px rgb(61, 195, 8);
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+}
+.points:active, .merchant:active, .playerMerchant:active{
+    background: #59da1e;
+    -webkit-box-shadow: inset 0px 0px 5px #59da1e;
+       -moz-box-shadow: inset 0px 0px 5px #59da1e;
+            box-shadow: inset 0px 0px 5px #59da1e;
+     outline: none;
+}
+.merchant, .playerMerchant {
+    background-image: url(./assets/js/parchment.jpg);
+}
+.points {
+    background-image: url(./assets/js/victoryfront.PNG);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
 }
 .merchantCardRowDiv {
     height: 45%;
@@ -46,10 +70,16 @@ body, main {
     top: 5%;
 }
 .pointCardBack {
-    background-color: rgb(209, 135, 209);
+    background-image: url(./assets/js/victory.png);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
 }
 .merchantCardBack {
-    background-color: rgb(197, 146, 27);
+    background-image: url(./assets/js/merchant.png);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
 }
 .playerArea {
     color: white;
@@ -188,13 +218,27 @@ body, main {
     display: none;
 }
 .brown {
-    background-color: yellow;
+    background-image: url(./assets/js/yellowspice.jpg);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
 }
 .victoryPoints{
-    background-color: rgb(219, 217, 217);
+    background-image: url(./assets/js/vicpointsbox.PNG);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
 }
 .cardCount{
-    background-color: rgb(186, 172, 218);
+    background-image: url(./assets/js/victoryfront.PNG);
+    background-position: center;
+    repeat: no-repeat;
+    background-size: cover;
+}
+.playerOneInfo:hover, .playerTwoInfo:hover{
+    box-shadow: 0px 0px 5px 5px rgb(152, 195, 200);
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
 }
 .image {
     position: absolute;
