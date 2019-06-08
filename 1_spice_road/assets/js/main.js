@@ -7,6 +7,6 @@ function intializeApp() {
     newGame.createFirstPointCards();
     newGame.createFirstMerchantCards();
     newGame.updateVictoryPointCardsDisplay();
-    newGame.displayMerchantCardsInHand();
     newGame.clickHandlers();
+
 }

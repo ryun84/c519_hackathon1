@@ -9,25 +9,25 @@ class Game {
         this.playerOne.yellow = 3;
         this.playerTwo.yellow = 4;
         this.currentPlayer = this.playerOne;
-        this.totalTurns = 0;
-        this.pointsCardArray = [];
-        this.merchantCardArray = [];
+        this.totalTurns = 0; //TODO: can probably get rid of this value all together but might be able to create a small div that displays total turns;
+        this.pointsCardArray = []; //TODO: refactor to availableCardsToChoseFromArray
+        this.merchantCardArray = []; //TODO: refactor to availableMerchCardsToChoseFromArray
         this.playerOne.merchantCardsInHand.push(3);
         this.playerTwo.merchantCardsInHand.push(3)
-        this.firstTurn = true;
+        this.firstTurn = true; //TODO: refactor to isFirstTurn
         this.winCondition = 5;
-        this.turnsLeft = 0;
+        this.turnsLeft = 0; //TODO: refactor to isFinalTurn and give it a value of false until it is final turn and will be set to true, to end the game
         this.disableClick = false;
     }
 
-    clickHandlers() {
+    clickHandlers() { // TODO: refactor to applyClickHandlers()
         $('.points').click(this.pointClickHandler);
         $('.playerMerchant').click(this.merchantClickHandler);
         $('.merchant').click(this.getMerchantToHand);
         $('.discardArea').click(this.endTurn);
     }
 
-    getMerchantToHand(event) {
+    getMerchantToHand(event) { //TODO: currentPlayerCollectsMerchantCardFromBoard
         if (this.disableClick === true) {
             return;
         }
@@ -51,7 +51,7 @@ class Game {
         setTimeout(this.endTurn, 3000);
     }
 
-    displayMerchantCardsInHand() {
+    displayMerchantCardsInHand() { //TODO: switch to display available cards in each individual divs set for each player
         var merchantHandArray = this.currentPlayer.merchantCardsInHand;
         $(".availableCardsRowDiv [data-index='" + 0 + "']").text("Receive " + merchantHandArray[merchIndex]);
         for (var merchIndex = 0; merchIndex <= this.currentPlayer.merchantCardsInHand.length - 1; merchIndex++) {
@@ -63,7 +63,7 @@ class Game {
         }
     }
 
-    endTurn() {
+    endTurn() { //TODO: refactor to endTurnAndSwitchToNextPlayer
         var currentPlayerTitle;
         if (this.currentPlayer === this.playerOne) {
             this.disableClick = false;
@@ -84,19 +84,19 @@ class Game {
         }
     }
 
-    createFirstPointCards() {
+    createFirstPointCards() { //TODO: initializeFirstPointCardsForGameStart
         for (var i = 0; i < 5; i++) {
             this.generatePointCards();
         }
     }
 
-    createFirstMerchantCards() {
+    createFirstMerchantCards() { //TODO: initializeFirstPointCardsForGameStart
         for (var i = 0; i < 6; i++) {
             this.createMerchantCard();
         }
     }
 
-    generatePointCards() {
+    generatePointCards() { //TODO: generateAPointCard
         var pointsValue = Math.floor(Math.random() * 20) + 6;
         this.pointsCardArray.push(pointsValue);
     }
@@ -115,7 +115,7 @@ class Game {
             this.updateVictoryPointCardsDisplay();
             this.updateSpiceCountDisplay();
             this.disableClick = true;
-            if (this.turnsLeft ===0){
+            if (this.turnsLeft === 0) {
                 setTimeout(this.endTurn, 3000);
             }
         } else {
@@ -123,7 +123,7 @@ class Game {
         }
     }
 
-    updateVictoryPointsDisplay() {
+    updateVictoryPointsDisplay() { //TODO: updatePlayerVictoryPoints
         if (this.currentPlayer === this.playerOne) {
             $('.cardCount.playerOne').html("Victory Card Count <br/>" + this.playerOne.pointCardCount);
             $('.victoryPoints.playerOne').html("Victory Points <br/>" + this.playerOne.victoryPoints);
@@ -137,14 +137,14 @@ class Game {
 
     updateVictoryPointCardsDisplay() {
         var pointsCards = $(".pointsCardRowDiv .card");
-        for( var i=0; i<pointsCards.length; i++){
+        for (var i = 0; i < pointsCards.length; i++) {
             pointsCards.eq(i) = this.pointsCardArray[i];
         }
-        // $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
-        // $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
-        // $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
-        // $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
-        // $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
+        $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
+        $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
+        $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
+        $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
+        $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
     }
 
     createMerchantCard() {
@@ -172,11 +172,11 @@ class Game {
                     return;
                 }
             }
-            if (this.currentPlayer === this.playerOne) {              
+            if (this.currentPlayer === this.playerOne) {
                 alert("Player Two has one turn left to outspice Player One");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
-            } else {                
+            } else {
                 alert("Player One has one turn left to outspice Player Two");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
@@ -213,16 +213,16 @@ class Game {
         }
     }
 
-    checkIfCanAfford( cost, playerResources ){
-        for( var key in playerResources ){
-            if( cost[key] > playerResources[key] ){
+    checkIfCanAfford(cost, playerResources) {
+        for (var key in playerResources) {
+            if (cost[key] > playerResources[key]) {
                 return false;
             }
         }
         return true;
     }
 
-    merchantClickHandler(event){
+    merchantClickHandler(event) {
         if (this.disableClick === true) {
             return;
         }
@@ -237,18 +237,18 @@ class Game {
                 green: 3,
                 brown: 0
             }
-            var cost =  {
+            var cost = {
                 yellow: 0,
                 red: 1,
                 green: 2,
                 brown: 1
             }
-            if( !this.checkIfCanAfford( cost, this.currentPlayer.spices ) ){
-                alert("You do not have enough resources!");            
+            if (!this.checkIfCanAfford(cost, this.currentPlayer.spices)) {
+                alert("You do not have enough resources!");
             } else {
                 // deduct
             }
-            if( spiceToDeduct > this.currentPlayer.yellow ){
+            if (spiceToDeduct > this.currentPlayer.yellow) {
                 alert("You do not have enough resources!");
             } else {
                 this.currentPlayer.yellow -= spiceToDeduct;
@@ -263,8 +263,8 @@ class Game {
         setTimeout(this.endTurn, 3000);
     }
 
-    updateSpiceCountDisplay(){
-        if( this.currentPlayer === this.playerOne ){
+    updateSpiceCountDisplay() {
+        if (this.currentPlayer === this.playerOne) {
             $("#p1_sq4").html("Yellow Spices<br/>" + this.playerOne.yellow);
         } else {
             $("#p2_sq4").html("Yellow Spices<br/>" + this.playerTwo.yellow);
