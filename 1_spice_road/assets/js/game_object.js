@@ -1,5 +1,9 @@
 class Game {
     constructor() {
+        this.getMerchantToHand = this.getMerchantToHand.bind(this);
+        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+        this.endTurn = this.endTurn.bind(this);
+        this.merchantClickHandler = this.merchantClickHandler.bind(this);
         this.playerOne = new Player();
         this.playerTwo = new Player();
         this.playerOne.yellow = 3;
@@ -10,15 +14,9 @@ class Game {
         this.merchantCardArray = [];
         this.playerOne.merchantCardsInHand.push(3);
         this.playerTwo.merchantCardsInHand.push(3)
-        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
-        this.endTurn = this.endTurn.bind(this);
         this.firstTurn = true;
         this.winCondition = 5;
         this.turnsLeft = 0;
-        this.getMerchantToHand = this.getMerchantToHand.bind(this);
-
-        this.merchantClickHandler = this.merchantClickHandler.bind(this);
-
         this.disableClick = false;
     }
 
@@ -29,19 +27,25 @@ class Game {
         $('.discardArea').click(this.endTurn);
     }
 
+    showGameMessageModal( message ){
+        $(".modal-body-message").text(message);
+        $("#gameMessageModal").modal("show");
+    }
+
+    generateRandomNumber( min, max ){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     getMerchantToHand(event) {
-        if (this.disableClick === true) {
-            return;
-        }
-        if (this.currentPlayer.merchantCardsInHand.length === 5) {
+        if (this.disableClick === true || this.currentPlayer.merchantCardsInHand.length === 5) {
             return;
         }
         var merchIndex = parseFloat($(event.currentTarget).attr('data-index'));
         var merchCardInfo = this.merchantCardArray[merchIndex];
         this.currentPlayer.merchantCardsInHand.push(merchCardInfo);
         var newMerchCard;
-        var rNG = Math.ceil(Math.random() * 2);
-        if (rNG === 1) {
+        var randomNumber = this.generateRandomNumber(1,2);
+        if (randomNumber === 1) {
             var newMerchCard = this.createMerchantGatherCard();
         } else {
             var newMerchCard = this.createMerchantTradeCard();
@@ -101,7 +105,7 @@ class Game {
     }
 
     generatePointCards() {
-        var pointsValue = Math.floor(Math.random() * 20) + 6;
+        var pointsValue = this.generateRandomNumber(6,25);
         this.pointsCardArray.push(pointsValue);
     }
 
@@ -114,7 +118,7 @@ class Game {
             this.currentPlayer.yellow -= 1;
             this.currentPlayer.victoryPoints += this.pointsCardArray[pointIndex];
             this.currentPlayer.pointCardCount += 1;
-            this.pointsCardArray.splice(pointIndex, 1, Math.floor(Math.random() * 20) + 6);
+            this.pointsCardArray.splice(pointIndex, 1, this.generateRandomNumber(6,25));
             this.updateVictoryPointsDisplay();
             this.updateVictoryPointCardsDisplay();
             this.updateSpiceCountDisplay();
@@ -123,7 +127,7 @@ class Game {
                 setTimeout(this.endTurn, 3000);
             }
         } else {
-            alert("You do not have enough yellow spice to make this move");
+            this.showGameMessageModal("You do not have enough yellow spice to make this move!");
         }
     }
 
@@ -159,8 +163,8 @@ class Game {
     }
 
     createMerchantCard() {
-        var rNG = Math.ceil(Math.random() * 2);
-        if (rNG === 1) {
+        var randomNumber = this.generateRandomNumber(1,2);
+        if (randomNumber === 1) {
             var gatherCard = this.createMerchantGatherCard();
             this.merchantCardArray.push(gatherCard);
         } else {
@@ -175,20 +179,20 @@ class Game {
             if (this.turnsLeft === 1) {
                 if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
                     this.updateVictoryPointCardsDisplay();
-                    alert("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints)
+                    this.showGameMessageModal("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints + "!");
                     return;
                 } else {
                     updateVictoryPointCardsDisplay();
-                    alert("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints)
+                    this.showGameMessageModal("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints + "!");
                     return;
                 }
             }
             if (this.currentPlayer === this.playerOne) {
-                alert("Player Two has one turn left to outspice Player One");
+                this.showGameMessageModal("Player Two has one turn left to outspice Player One!");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
             } else {
-                alert("Player One has one turn left to outspice Player Two");
+                this.showGameMessageModal("Player One has one turn left to outspice Player Two!");
                 this.turnsLeft = 1;
                 setTimeout(this.endTurn, 3000);
             }
@@ -196,13 +200,13 @@ class Game {
     }
 
     createMerchantGatherCard() {
-        var spiceValue = Math.floor(Math.random() * 4) + 2;
+        var spiceValue = this.generateRandomNumber(2,5);
         return spiceValue;
     }
 
     createMerchantTradeCard() {
-        var topValue = Math.floor(Math.random() * 5) + 2;
-        var bottomValue = Math.floor(Math.random() * 5) + 2;
+        var topValue = this.generateRandomNumber(2,6);
+        var bottomValue = this.generateRandomNumber(2,6);
         var tradeCard = [];
         tradeCard.push(topValue);
         tradeCard.push(bottomValue);
@@ -233,7 +237,7 @@ class Game {
             var spiceToDeduct = merchCardToUseData[0];
             var spiceToAdd = merchCardToUseData[1];
             if (spiceToDeduct > this.currentPlayer.yellow) {
-                alert("You do not have enough resources!");
+                this.showGameMessageModal("You do not have enough resources!");
                 return;
             } else {
                 this.currentPlayer.yellow -= spiceToDeduct;

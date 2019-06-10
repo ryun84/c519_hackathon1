@@ -248,3 +248,7 @@ body, main {
     top: 5%;
     left: 1%;
 }
+.modal-body-message {
+    font-size: 150%;
+    text-align: center;
+}

@@ -9,4 +9,5 @@ function intializeApp() {
     newGame.updateVictoryPointCardsDisplay();
     newGame.displayMerchantCardsInHand();
     newGame.clickHandlers();
+    $('#gameStartModal').modal('show');
 }
