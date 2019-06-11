@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         this.getMerchantToHand = this.getMerchantToHand.bind(this);
-        this.pointClickHandler = this.pointClickHandler.bind(this); //going to contain individual numbers alongside arrays with 2 values so we will need to search for arrays and display the values inside the array.
+        this.pointClickHandler = this.pointClickHandler.bind(this);
         this.endTurn = this.endTurn.bind(this);
         this.merchantClickHandler = this.merchantClickHandler.bind(this);
         this.playerOne = new Player();
@@ -59,12 +59,12 @@ class Game {
 
     displayMerchantCardsInHand() {
         var merchantHandArray = this.currentPlayer.merchantCardsInHand;
-        $(".availableCardsRowDiv [data-index='" + 0 + "']").text("Receive " + merchantHandArray[merchIndex]);
+        $(".availableCardsRowDiv [data-index='" + 0 + "']").html("Receive<br/>" + merchantHandArray[merchIndex]);
         for (var merchIndex = 0; merchIndex <= this.currentPlayer.merchantCardsInHand.length - 1; merchIndex++) {
             if (Array.isArray(merchantHandArray[merchIndex])) {
-                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").html("Trade " + merchantHandArray[merchIndex][0] + "<br/> for " + merchantHandArray[merchIndex][1]);
+                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").html("Trade<br/>" + merchantHandArray[merchIndex][0] + "<br/>for<br/> " + merchantHandArray[merchIndex][1]);
             } else {
-                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").text("Receive " + merchantHandArray[merchIndex]);
+                $(".availableCardsRowDiv [data-index='" + merchIndex + "']").html("Receive<br/>" + merchantHandArray[merchIndex]);
             }
         }
     }
@@ -144,11 +144,11 @@ class Game {
     }
 
     updateVictoryPointCardsDisplay() {
-        $("#zeroIndex").html("Victory Points<br/> " + this.pointsCardArray[0]);
-        $("#oneIndex").html("Victory Points<br/>" + this.pointsCardArray[1]);
-        $("#twoIndex").html("Victory Points<br/>" + this.pointsCardArray[2]);
-        $("#threeIndex").html("Victory Points<br/>" + this.pointsCardArray[3]);
-        $("#fourIndex").html("Victory Points<br/>" + this.pointsCardArray[4]);
+        $("#zeroIndex").html("Victory<br/> Points<br/> " + this.pointsCardArray[0]);
+        $("#oneIndex").html("Victory<br/> Points<br/>" + this.pointsCardArray[1]);
+        $("#twoIndex").html("Victory<br/> Points<br/>" + this.pointsCardArray[2]);
+        $("#threeIndex").html("Victory<br/> Points<br/>" + this.pointsCardArray[3]);
+        $("#fourIndex").html("Victory<br/> Points<br/>" + this.pointsCardArray[4]);
     }
 
     clearPlayerCardsFromDisplay() {
@@ -157,9 +157,6 @@ class Game {
                 $(".availableCardsRowDiv [data-index='" + currentPlayerIndex + "']").text(" ");
             }
         }
-
-
-
     }
 
     createMerchantCard() {
@@ -179,11 +176,11 @@ class Game {
             if (this.turnsLeft === 1) {
                 if (this.playerOne.victoryPoints > this.playerTwo.victoryPoints) {
                     this.updateVictoryPointCardsDisplay();
-                    this.showGameMessageModal("Player One wins with " + this.playerOne.victoryPoints + " vs Player Two with " + this.playerTwo.victoryPoints + "!");
+                    this.showGameMessageModal("Player One wins with " + this.playerOne.victoryPoints + " points vs Player Two with " + this.playerTwo.victoryPoints + " points!");
                     return;
                 } else {
                     updateVictoryPointCardsDisplay();
-                    this.showGameMessageModal("Player Two wins with " + this.playerTwo.victoryPoints + " vs Player One with " + this.playerOne.victoryPoints + "!");
+                    this.showGameMessageModal("Player Two wins with " + this.playerTwo.victoryPoints + " points vs Player One with " + this.playerOne.victoryPoints + " points!");
                     return;
                 }
             }
@@ -217,9 +214,9 @@ class Game {
         for (var counter = 0; counter < 6; counter++) {
             var merchantInnerArray = this.merchantCardArray[counter];
             if (Array.isArray(merchantInnerArray)) {
-                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Trade " + merchantInnerArray[0] + "<br/> for " + merchantInnerArray[1]);
+                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Trade<br/>" + merchantInnerArray[0] + "<br/>for<br/>" + merchantInnerArray[1]);
             } else {
-                $(".merchantCardRowDiv [data-index='" + counter + "']").text("Receive " + merchantInnerArray);
+                $(".merchantCardRowDiv [data-index='" + counter + "']").html("Receive<br/>" + merchantInnerArray);
             }
         }
     }

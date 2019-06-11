@@ -15,7 +15,7 @@ body, main {
 }
 #gameLogo {
     opacity: .80;
-    width: 20%;
+    width: 25%;
     height: auto;
     margin-left: .5%;
     
@@ -55,12 +55,14 @@ body, main {
 }
 .merchant, .playerMerchant {
     background-image: url(./assets/js/parchment.jpg);
+    font-size: 150%;
 }
 .points {
     background-image: url(./assets/js/victoryfront.PNG);
     background-position: center;
     repeat: no-repeat;
     background-size: cover;
+    font-size: 150%;
 }
 .merchantCardRowDiv {
     height: 45%;
@@ -122,13 +124,20 @@ body, main {
 }
 .availableCardsRow_Title, .playerDiscardArea_Title, .playerActionButtons_Title {
     position: relative;
-    height: 5%;
+    height: 10%;
     display: inline-block;
     left: 1%;
     top: 0;
     margin-left: 0;
-    margin-top: 0.5%;
+    margin-top: 0;
+    font-size: 210%;
     text-align: center;
+    animation: blink 0.6s linear 5;
+}
+@keyframes blink {
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}    
 }
 .availableCardsRow_Title {
     width: 49%;
@@ -156,8 +165,9 @@ body, main {
     left: 12.5%;
     top: 0;
     margin-left: 0;
-    margin-top: 1.5%;
+    margin-top: 0.5%;
     text-align: center;
+    font-size: 150%;
 }
 .playerStats_Title.playerTwo{
     display: inline-block;
@@ -204,6 +214,7 @@ body, main {
     top: 5%;
     left: 5%;
     position: relative;
+    font-size: 120%;
 }
 .yellow {
     background-color: grey;
