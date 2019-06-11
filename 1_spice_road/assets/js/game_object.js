@@ -37,7 +37,10 @@ class Game {
     }
 
     getMerchantToHand(event) {
-        if (this.disableClick === true || this.currentPlayer.merchantCardsInHand.length === 5) {
+        if (this.disableClick === true) {
+            return;
+        }
+        if (this.currentPlayer.merchantCardsInHand.length === 5) {
             return;
         }
         var merchIndex = parseFloat($(event.currentTarget).attr('data-index'));
